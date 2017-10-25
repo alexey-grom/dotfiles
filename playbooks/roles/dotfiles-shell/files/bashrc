@@ -1,0 +1,42 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+shopt -s checkwinsize
+
+#
+# build up
+#
+
+source ~/.config/bash/history
+source ~/.config/bash/completion
+source ~/.config/bash/aliases
+source ~/.config/bash/functions
+source ~/.config/bash/liquidprompt/liquidprompt
+
+PATH=$PATH:$(realpath ~)/.bin
+
+export VAGRANT_DEFAULT_PROVIDER=libvirt
+
+#
+# custom
+#
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+
+function _pyenv() {
+    [ ! -d "~/.pyenv/bin" ] || return;
+    PYENV_PATH=$(realpath ~/.pyenv/bin)
+    if [[ -d "$PYENV_PATH" ]]; then
+      export PATH="${PYENV_PATH}:$PATH"
+      eval "$(pyenv init -)"
+      eval "$(pyenv virtualenv-init -)"
+    fi
+}
+_pyenv

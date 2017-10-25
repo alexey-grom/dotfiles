@@ -1,0 +1,14 @@
+- apt: name={{ item }} state=present
+  with_items:
+  - git
+  - w3m-img
+
+- git:
+    repo: https://github.com/ranger/ranger.git
+    dest: /var/tmp/ranger
+
+- shell: make install
+  args:
+    chdir: /var/tmp/ranger
+
+- file: path=/var/tmp/ranger state=absent

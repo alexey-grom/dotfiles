@@ -1,0 +1,1 @@
+- copy: src=nowshahr.xorg.conf dest=/etc/X11/xorg.conf

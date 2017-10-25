@@ -1,0 +1,21 @@
+- shell: "whoami | grep root"
+  ignore_errors: True
+  register: isroot
+
+- shell: cat /etc/hostname
+  register: hostname
+
+- include_tasks: root.yml
+  become: yes
+  become_method: sudo
+
+- include_tasks: root-nowshahr.yml
+  become: yes
+  become_method: sudo
+  when: hostname.stdout_lines[0] == 'nowshahr'
+
+- include_tasks: user.yml
+  when: isroot.rc != 0
+
+- include_tasks: user-nowshahr.yml
+  when: isroot.rc != 0 and hostname.stdout_lines[0] == 'nowshahr'

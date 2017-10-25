@@ -1,0 +1,6 @@
+.idea/
+*.retry
+*.iso
+tmp/
+update-home.inventory.ini
+ssh-invasion.inventory.ini

@@ -1,0 +1,6 @@
+let mapleader = " "
+
+map <leader>f :action Find<CR>
+map <leader>o :action OverrideMethods<CR>
+map <leader>r :action RenameElement<CR>
+vmap <leader>y "+y

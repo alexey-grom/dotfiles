@@ -1,0 +1,80 @@
+- name: Install system-wide packages
+  apt: name={{ item }} state=present
+  with_items:
+    - squashfs-tools
+    - genisoimage
+
+- name: Create a live directories
+  file:
+    path: "{{ inventory_hostname }}/{{ item }}"
+    state: directory
+  with_items:
+    - live
+    - live/live
+    - live/isolinux
+
+- find:
+    paths: "{{ inventory_hostname }}/boot/"
+    patterns: initrd*
+  register: find
+
+- assert:
+    that: "find.matched == 1"
+
+- copy:
+    src: "{{ find.files[0].path }}"
+    dest: "{{ inventory_hostname }}/live/initrd"
+
+- find:
+    paths: "{{ inventory_hostname }}/boot/"
+    patterns: vmlinuz*
+  register: find
+
+- assert:
+    that: "find.matched == 1"
+
+- copy:
+    src: "{{ find.files[0].path }}"
+    dest: "{{ inventory_hostname }}/live/vmlinuz"
+
+- file: path="{{ inventory_hostname }}/live/live/filesystem.squashfs" state=absent
+
+- name: Make squashfs
+  shell: mksquashfs {{ inventory_hostname }} \
+                    {{ inventory_hostname }}/live/live/filesystem.squashfs \
+                    -e boot -e live
+
+- copy:
+    src: isolinux.cfg
+    dest: "{{ inventory_hostname }}/live/isolinux"
+
+- copy: src={{ item.src }} dest="{{ inventory_hostname }}/live/{{ item.dest }}"
+  with_items:
+    - {src: "memtest86+.bin", dest: "live/memtest"}
+    - {src: "isolinux.cfg", dest: "isolinux"}
+    - {src: "isolinux.bin", dest: "isolinux"}
+    - {src: "menu.c32", dest: "isolinux"}
+    - {src: "ldlinux.c32", dest: "isolinux"}
+    - {src: "libutil.c32", dest: "isolinux"}
+    - {src: "hdt.c32", dest: "isolinux"}
+    - {src: "libcom32.c32", dest: "isolinux"}
+    - {src: "libgpl.c32", dest: "isolinux"}
+    - {src: "libmenu.c32", dest: "isolinux"}
+    - {src: "pci.ids", dest: "isolinux"}
+
+- file: path="live.iso" state=absent
+
+- name: Create iso
+  shell: genisoimage -rational-rock \
+                     -volid "Live" \
+                     -cache-inodes \
+                     -joliet \
+                     -hfs \
+                     -full-iso9660-filenames \
+                     -b isolinux/isolinux.bin \
+                     -c isolinux/boot.cat \
+                     -no-emul-boot \
+                     -boot-load-size 4 \
+                     -boot-info-table \
+                     -output ../live.iso \
+                     {{ inventory_hostname }}/live

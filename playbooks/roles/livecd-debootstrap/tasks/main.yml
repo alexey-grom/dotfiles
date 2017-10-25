@@ -1,0 +1,17 @@
+- name: Install system-wide packages
+  apt: name={{ item }} state=present
+  with_items:
+    - debootstrap
+
+- name: Create a chroot directory
+  file: path={{ inventory_hostname }} state=directory
+  register: rootpath
+
+- name: Running the debootstrap
+  shell: debootstrap \
+          --variant={{ variant}} \
+          --arch={{ arch }} \
+          {{ release }} \
+          {{ inventory_hostname }} \
+          {{ repo }}
+  when: rootpath.changed == True

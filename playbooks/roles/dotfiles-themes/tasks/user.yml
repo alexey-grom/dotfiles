@@ -1,0 +1,24 @@
+- file: path={{ item }} state=directory recurse=True
+  with_items:
+  - ~/.icons/
+  - ~/.themes/
+  - ~/.config/gtk-3.0/
+
+#- git:
+#    repo: https://github.com/EliverLara/Ant
+#    dest: ~/.themes/Ant/
+
+- git:
+    repo: https://github.com/daniruiz/Flat-Remix
+    dest: ~/.icons/Flat-Remix/
+
+- file:
+    src: "~/.icons/Flat-Remix/Flat Remix"
+    dest: "~/.icons/Flat Remix"
+    state: link
+
+- copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+  - {src: "gtk-2.0/.gtkrc-2.0", dest: "~/"}
+  - {src: "gtk-3.0/settings.ini", dest: "~/.config/gtk-3.0/"}
+  - {src: "gtk-3.0/gtk.css", dest: "~/.config/gtk-3.0/"}

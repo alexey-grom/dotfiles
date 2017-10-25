@@ -1,0 +1,11 @@
+- name: Check is ranger installed
+  shell: command -v ranger >/dev/null 2>&1
+  register: is_ranger_exist
+  ignore_errors: yes
+
+- include_tasks: root.yml
+  become: yes
+  become_method: sudo
+  when: is_ranger_exist.rc != 0
+
+- include_tasks: user.yml

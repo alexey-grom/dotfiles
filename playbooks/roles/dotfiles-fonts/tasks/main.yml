@@ -1,0 +1,9 @@
+- shell: fc-list | grep "Source Code Pro"
+  register: result
+  ignore_errors: True
+
+- name: Install source code pro
+  become: yes
+  become_method: sudo
+  include_tasks: root.yml
+  when: result.rc != 0

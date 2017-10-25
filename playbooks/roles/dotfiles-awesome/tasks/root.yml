@@ -1,0 +1,10 @@
+- name: Install awesome wm
+  apt: name={{ item }} state=present
+  with_items:
+    - git
+    - awesome
+    - awesome-extra
+    - xcompmgr
+    - rofi
+    - i3lock
+    - scrot

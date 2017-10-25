@@ -1,0 +1,38 @@
+- apt: name=unifont state=present
+
+- get_url:
+    url: https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.zip
+    dest: /var/tmp/font.zip
+
+- file: path={{ item }} state=directory recurse=True
+  with_items:
+  - /var/tmp/font/
+  - /usr/local/share/fonts/OTF/
+
+- unarchive:
+    remote_src: yes
+    src: /var/tmp/font.zip
+    dest: /var/tmp/font/
+
+- shell: find /var/tmp/font/source-code-pro-2.030R-ro-1.050R-it/OTF/ -type f -name \*.otf
+  register: files
+
+- copy:
+    remote_src: yes
+    src: "{{ item }}"
+    dest: /usr/local/share/fonts/OTF/
+  with_items: "{{ files.stdout_lines }}"
+
+- shell: "{{ item }}"
+  with_items:
+  - fc-cache -f -v
+  - fc-list | grep "Source Code Pro"
+  register: result
+
+- assert:
+    that: result
+
+- file: name={{ item }} state=absent
+  with_items:
+  - /var/tmp/font.zip
+  - /var/tmp/font/

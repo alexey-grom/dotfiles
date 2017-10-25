@@ -1,0 +1,14 @@
+- file: path=~/.bin/ state=directory recurse=True
+- file: path=~/.config/bash/ state=directory recurse=True
+
+- copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+  - {src: "bash/", dest: "~/.config/bash/"}
+  - {src: "bashrc", dest: "~/.bashrc"}
+  - {src: "bash_profile", dest: "~/.bash_profile"}
+  - {src: "liquidpromptrc", dest: "~/.liquidpromptrc"}
+  - {src: "psqlrc", dest: "~/.psqlrc"}
+
+- git:
+    repo: "https://github.com/nojhan/liquidprompt.git"
+    dest: ~/.config/bash/liquidprompt

@@ -1,0 +1,15 @@
+- file: path={{ item }} state=directory recurse=True
+  with_items:
+  - ~/.config/awesome/
+  - ~/.config/rofi/
+
+- copy: src=awesome/ dest=~/.config/awesome/
+- copy: src=rofi.conf dest=~/.config/rofi/config
+
+- git:
+    repo: "https://github.com/lcpz/lain.git"
+    dest: ~/.config/awesome/lain/
+
+#- git:
+#    repo: "https://github.com/streetturtle/awesome-wm-widgets.git"
+#    dest: ~/.config/awesome/awesome-wm-widgets/

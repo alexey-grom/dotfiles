@@ -1,0 +1,24 @@
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+fi
+
+alias ll='ls -lh'
+alias la='ls -ACF'
+alias l='ls -FAhnl'
+alias dmesg-less='sudo dmesg --color=always | less -R'
+alias cal3="cal -3"
+alias xlock="i3lock -c 000000 -f"
+alias calcurse="LANG=en_US.UTF-8 calcurse"
+
+alias mc='LANG=en_US.UTF-8 EDITOR=vim mc'
+alias ranger='LANG=en_US.UTF-8 EDITOR=vim ranger'
+
+alias glog="git log --graph --pretty=format:'%C(auto)%h -%d %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# vi:syntax=sh

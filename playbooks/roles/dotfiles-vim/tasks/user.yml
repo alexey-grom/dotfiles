@@ -1,0 +1,24 @@
+- file: path=~/.config/nvim/ state=directory recurse=True
+
+- copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+  - {src: "ideavimrc", dest: "~/.ideavimrc"}
+  - {src: "nvim/", dest: "~/.config/nvim/"}
+
+- stat: path=~/.config/nvim/bundle/Vundle.vim
+  register: vundle
+
+- git:
+    repo: "https://github.com/VundleVim/Vundle.vim.git"
+    dest: ~/.config/nvim/bundle/Vundle.vim
+  when: not vundle.stat.exists
+
+- shell: vim +PluginInstall +qall
+
+- shell: find ~/.vim/bundle/ -type d -name ".git" -exec rm -r "{}" \;
+  ignore_errors: True
+  when: purge_vundle_git
+
+- shell: find ~/.vim/bundle/vim-ctrlspace/bin/ -type f ! -name "file_engine_linux_amd64" -exec rm "{}" \;
+  ignore_errors: True
+  when: purge_vundle_git

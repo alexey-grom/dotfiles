@@ -1,0 +1,11 @@
+- name: Check is tmux installed
+  shell: command -v tmux >/dev/null 2>&1
+  register: is_tmux_exists
+  ignore_errors: yes
+
+- include_tasks: root.yml
+  become: yes
+  become_method: sudo
+  when: is_tmux_exists.rc != 0
+
+- include_tasks: user.yml

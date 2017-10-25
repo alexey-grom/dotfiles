@@ -1,0 +1,6 @@
+#variant: buildd
+#variant: fakechroot
+variant: minbase
+arch: amd64
+release: stretch
+repo: http://httpredir.debian.org/debian

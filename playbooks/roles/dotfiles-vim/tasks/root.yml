@@ -1,0 +1,12 @@
+- name: Install vim
+  apt: name={{ item }} state=present
+  with_items:
+    - git
+    - neovim
+    - python-pip
+    - python3-pip
+
+- shell: pip install neovim && pip3 install neovim
+
+- shell: update-alternatives --set vim /usr/bin/nvim
+

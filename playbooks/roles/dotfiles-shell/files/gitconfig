@@ -1,0 +1,7 @@
+[user]
+	name = Alex
+	email = alxgrmv@gmail.com
+[core]
+	autocrlf = input
+	editor = vim
+[alias]

@@ -1,0 +1,9 @@
+- name: Check is chrome installed
+  shell: command -v google-chrome >/dev/null 2>&1
+  register: is_chrome_exists
+  ignore_errors: yes
+
+- include_tasks: root.yml
+  become: yes
+  become_method: sudo
+  when: is_chrome_exists.rc != 0

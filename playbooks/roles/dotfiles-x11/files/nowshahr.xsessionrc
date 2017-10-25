@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# exec_if_possible () {
+#   if [ ! -z type "$1" &>/dev/null ]; then
+#     return
+#   fi
+#   ${*:1} &
+# }
+
+# setxkbmap -layout us,ru -option
+# setxkbmap -layout us,ru -option grp:shifts_toggle,grp_led:scroll
+
+# интегрированное
+#xrandr --output VGA-1 --primary --mode 1920x1080 --pos 1928x0 --rotate normal --output DP-1 --off --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal || true
+
+# через карту
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
+
+# оба горизонтально
+# (lg слева)
+xrandr --output DVI-D-0 --off --output HDMI-1-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-1-1 --off --output VGA-1-1 --off --output HDMI-0 --mode 1920x1080 --pos 0x0 --rotate normal --output DVI-I-1 --off --output DVI-I-0 --off --output DP-1 --off --output DP-0 --off
+# (lg справа)
+#xrandr --output DVI-D-0 --off --output HDMI-1-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1-1 --off --output VGA-1-1 --off --output HDMI-0 --mode 1920x1080 --pos 1920x0 --rotate normal --output DVI-I-1 --off --output DVI-I-0 --off --output DP-1 --off --output DP-0 --off
+
+# один вертикально
+#xrandr --output DVI-D-0 --off --output HDMI-1-1 --mode 1920x1080 --pos 0x0 --rotate left --output DP-1-1 --off --output VGA-1-1 --off --output HDMI-0 --mode 1920x1080 --pos 1080x560 --rotate normal --output DVI-I-1 --off --output DVI-I-0 --off --output DP-1 --off --output DP-0 --off

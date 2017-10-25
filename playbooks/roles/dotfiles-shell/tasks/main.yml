@@ -1,0 +1,12 @@
+- include_tasks: root.yml
+  become: yes
+  become_method: sudo
+
+- include_tasks: user.yml
+
+- shell: "whoami | grep alex"
+  ignore_errors: True
+  register: isalex
+
+- include_tasks: user-alex.yml
+  when: isalex.rc == 0

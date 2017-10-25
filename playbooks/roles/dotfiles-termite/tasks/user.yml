@@ -1,0 +1,3 @@
+- file: path=~/.config/termite/ state=directory recurse=True
+
+- copy: src={{ termite_theme }} dest=~/.config/termite/config

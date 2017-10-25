@@ -1,0 +1,49 @@
+- name: Install system-wide packages
+  apt: name={{ item }} state=present
+  with_items:
+    - build-essential
+    - systemd
+    - net-tools
+    - tcpdump
+    - traceroute
+    - openssh-client
+    - openssh-server
+    - isc-dhcp-client
+    - git
+    - curl
+    - wget
+    - sudo
+    - unzip
+    - atool
+    - uuid-runtime
+
+- name: Randomize a hostname
+  shell: echo $(uuidgen | cut -d '-' -f 1) > /etc/hostname
+
+- shell: echo "127.0.0.1 $(cat /etc/hostname)" >> /etc/hosts
+
+- name: Install locales package
+  apt: name=locales state=present install_recommends=false
+
+- name: Copy locale.gen
+  copy: src=locale.gen dest=/etc/locale.gen
+
+- name: Rebuild locales
+  shell: locale-gen && LANG=C update-locale LC_ALL="en_US.UTF-8" LC_LANG="en_US.UTF-8" LANG="en_US.UTF-8" LANGUAGE="en_US.UTF-8"
+
+- name: Install kernel
+  apt: name={{ item }} state=present install_recommends=false
+  with_items:
+    - linux-image-amd64
+    - live-boot
+
+- name: Systemd
+  file: src=/bin/systemd path=/sbin/init state=link
+
+- name: Create a user
+  user:
+    name: user
+    password: "{{ 'user'|password_hash('sha512') }}"
+    shell: /bin/bash
+    groups:
+      - sudo

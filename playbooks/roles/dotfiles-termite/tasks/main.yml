@@ -1,0 +1,13 @@
+- name: Check is termite installed
+  shell: command -v termite >/dev/null 2>&1
+  register: is_termite_exist
+  ignore_errors: yes
+
+- name: Install termite
+  become: yes
+  become_method: sudo
+  include_tasks: root.yml
+  when: is_termite_exist.rc != 0
+
+- name: Dotfiles
+  include_tasks: user.yml

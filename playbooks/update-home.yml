@@ -1,0 +1,37 @@
+- hosts: all
+  roles:
+    - role: google-chrome
+      tags: [env, chrome]
+
+    - role: home-preset
+      tags: [env, preset]
+
+    - role: dotfiles-x11
+      tags: [x, x11]
+
+    - role: dotfiles-awesome
+      tags: [x, awesome]
+
+    - role: dotfiles-fonts
+      tags: [x, fonts]
+
+    - role: dotfiles-themes
+      tags: [x, themes]
+
+    - role: dotfiles-termite
+      tags: [x, termite]
+
+    - role: dotfiles-ssh
+      tags: [console, ssh]
+
+    - role: dotfiles-shell
+      tags: [console, shell]
+
+    - role: dotfiles-tmux
+      tags: [console, tmux]
+
+    - role: dotfiles-ranger
+      tags: [console, ranger]
+
+    - role: dotfiles-vim
+      tags: [console, vim]

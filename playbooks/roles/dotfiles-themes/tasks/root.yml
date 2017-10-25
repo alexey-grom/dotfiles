@@ -1,0 +1,6 @@
+- apt: name={{ item }} state=present
+  with_items:
+  - bc
+  - sassc
+  - lxappearance  # it's better then gtk-theme-switch
+  - arc-theme

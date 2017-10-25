@@ -1,0 +1,16 @@
+- name: Install system-wide packages
+  apt: name={{ item }} state=present
+  with_items:
+    - icedove
+    - liferea
+    - transmission-gtk
+    - mpv
+    - vlc
+    - cmus
+    - xnview
+    - djview4
+    - qpdfview
+    - qpdfview-djvu-plugin
+    - calcurse
+    - keepassx
+    - pastebinit

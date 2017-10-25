@@ -1,0 +1,51 @@
+- hosts: all
+  connection: local
+  roles:
+    - livecd-debootstrap
+
+- hosts: all
+  connection: chroot
+  gather_facts: no
+  pre_tasks:
+    - name: Check python2
+      raw: apt-get update && apt-get -y install python
+  vars:
+  - purge_vundle_git: True
+  roles:
+    - livecd-setup
+    - dotfiles-x11
+    - dotfiles-awesome
+    - dotfiles-fonts
+    - dotfiles-shell
+    - dotfiles-vim
+    - dotfiles-ranger
+    - dotfiles-termite
+    - dotfiles-tmux
+    - dotfiles-ssh
+    - dotfiles-themes
+    - google-chrome
+  post_tasks:
+    - shell: apt-get -y clean
+
+- hosts: all
+  connection: chroot
+  become: True
+  become_user: user
+  vars:
+  - purge_vundle_git: True
+  roles:
+    - dotfiles-x11
+    - dotfiles-awesome
+    - dotfiles-fonts
+    - dotfiles-shell
+    - dotfiles-vim
+    - dotfiles-ranger
+    - dotfiles-termite
+    - dotfiles-tmux
+    - dotfiles-ssh
+    - dotfiles-themes
+
+- hosts: all
+  connection: local
+  roles:
+    - livecd-iso

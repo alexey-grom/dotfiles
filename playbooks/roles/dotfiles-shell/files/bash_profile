@@ -1,0 +1,8 @@
+function _realCurrentPath () {
+  local path
+  path=$(realpath $BASH_SOURCE)
+  path=$(dirname $path)
+  echo $path
+}
+
+. $(_realCurrentPath )/.bashrc
