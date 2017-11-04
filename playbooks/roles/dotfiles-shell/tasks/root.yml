@@ -6,3 +6,7 @@
     - htop
     - ncdu
     - git
+    - dante-client
+    - jq
+    - curl
+    - wget

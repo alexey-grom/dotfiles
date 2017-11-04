@@ -1,104 +1,14 @@
-function remove-pyc() {
-  find . -name \*.pyc -delete
-}
+# function temp-firefox () {
+#     PROFILEDIR=/tmp/tmp-firefox-profile.$$.d
+#     mkdir $PROFILEDIR
+#     firefox -profile $PROFILEDIR -no-remote -new-instance -preferences
+#     rm -rf $PROFILEDIR
+# }
 
-function fix-opus-codec () {
-  local filename=$1
-  local codec=$(exiftool "$filename" | grep A_OPUS)
-  if [[ -z $codec ]]; then
-    echo "Is not opus codec"
-    return
-  fi
-  local newfilename=$(echo $filename | sed -e 's/\.\(.*\)$/-vorbis.\1/')
-  ffmpeg -i "$filename" -acodec libvorbis -vcodec copy "$newfilename" && \
-  echo "Done; filename $newfilename"
-}
-
-function run-iso-with-qemu () {
-  qemu-system-x86_64 \
-    -enable-kvm \
-    -cdrom $1 \
-    -soundhw ac97 \
-    -display sdl \
-    -smp 2 \
-    -net nic -net user,hostfwd=tcp::2222-:22 \
-    -m 2048 ${@:2}
-}
-function kill-thunar () {
-  pkill thunar && pkill Thunar
-}
-
-function termite-colors () {
-  local _P=$(realpath ~)/.config/termite
-  ln -sf $_P/config-$1 $_P/config
-}
-
-function dark-termite () {
-  termite-colors 'dark'
-}
-
-function light-termite () {
-  termite-colors 'light'
-}
-
-function split-image-in-two () {
-  local name=`echo $1 | cut -d'.' -f1`
-  local ext=`echo $1 | cut -d'.' -f2`
-  name=${2:-$name}
-  convert $1 -gravity East -crop 50%x100%+0+0 ${name}-right.$ext
-  convert $1 -gravity West -crop 50%x100%+0+0 ${name}-left.$ext
-}
-
-function add-npm-bin () {
-  export PATH="$PATH:$(pwd)/node_modules/.bin"
-}
-
-function activate-pyenv () {
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-}
-
-function run-sshuttle () {
-  sshuttle -v --dns 0.0.0.0/0 -r $1
-}
-
-function run-with-steam () {
-  local P=$(pwd)
-  $(realpath ~)/.steam/bin32/steam-runtime/run.sh "${P}/${1}"
-  cd $P
-}
-
-function generate-password () {
-  < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;
-}
-
-function temp-firefox () {
-    PROFILEDIR=/tmp/tmp-firefox-profile.$$.d
-    mkdir $PROFILEDIR
-    firefox -profile $PROFILEDIR -no-remote -new-instance -preferences
-    rm -rf $PROFILEDIR
-}
-
-function gpg-encrypt () {
-    gpg -o - --cipher-algo AES -a -c $1
-}
-
-function gpg-decrypt () {
-    gpg -o - -d $1
-}
-
-function mpv-va () {
-    mpv --audio-file="$2" "$1"
-}
-
-function mpv-vas () {
-    mpv --sub-file="$3" --audio-file="$2" "$1"
-}
-
-function mpv-vs () {
-    mpv --sub-file="$2" "$1"
-}
-
-# vi:syntax=sh
+source ~/.config/bash/funcs/crypt.sh
+source ~/.config/bash/funcs/environments.sh
+source ~/.config/bash/funcs/files.sh
+source ~/.config/bash/funcs/media.sh
+source ~/.config/bash/funcs/proxy.sh
+source ~/.config/bash/funcs/virt.sh
+source ~/.config/bash/funcs/x.sh

@@ -8,6 +8,8 @@
   - {src: "bash_profile", dest: "~/.bash_profile"}
   - {src: "liquidpromptrc", dest: "~/.liquidpromptrc"}
   - {src: "psqlrc", dest: "~/.psqlrc"}
+  - {src: "curlrc", dest: "~/.curlrc"}
+  - {src: "wgetrc", dest: "~/.wgetrc"}
 
 - git:
     repo: "https://github.com/nojhan/liquidprompt.git"
