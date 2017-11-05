@@ -31,8 +31,7 @@ export NVM_DIR="$HOME/.nvm"
 
 
 function _pyenv() {
-    [ ! -d "~/.pyenv/bin" ] || return;
-    PYENV_PATH=$(realpath ~/.pyenv/bin)
+    PYENV_PATH="$HOME/.pyenv/bin/"
     if [[ -d "$PYENV_PATH" ]]; then
       export PATH="${PYENV_PATH}:$PATH"
       eval "$(pyenv init -)"

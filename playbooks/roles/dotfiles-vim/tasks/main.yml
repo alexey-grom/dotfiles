@@ -15,4 +15,4 @@
 
 - name: Dotfiles
   include_tasks: user.yml
-  when: isroot.rc != 0
+  when: root_install_nvim || isroot.rc != 0

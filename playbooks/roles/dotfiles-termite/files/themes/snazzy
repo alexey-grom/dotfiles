@@ -10,7 +10,8 @@ foreground_bold = rgb(239, 240, 235)
 background = rgb(40, 42, 56)
 
 # If unset, will reverse foreground and background
-highlight = #2f2f2f
+#highlight = #2f2f2f  # original
+#highlight = #585858  # better
 
 # Colors from original hyper-snazzy theme
 color0 = rgb(40,42,56)

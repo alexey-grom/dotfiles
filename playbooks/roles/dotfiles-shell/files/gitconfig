@@ -4,4 +4,5 @@
 [core]
 	autocrlf = input
 	editor = vim
+	excludesfile = ~/.gitignore_global
 [alias]
