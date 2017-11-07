@@ -1,4 +1,4 @@
-function remove-pyc() {
+function remove-pyc () {
   find . -name \*.pyc -delete
 }
 

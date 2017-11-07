@@ -6,6 +6,7 @@
 # }
 
 source ~/.config/bash/funcs/crypt.sh
+source ~/.config/bash/funcs/docker.sh
 source ~/.config/bash/funcs/environments.sh
 source ~/.config/bash/funcs/files.sh
 source ~/.config/bash/funcs/media.sh
