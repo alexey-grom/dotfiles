@@ -177,6 +177,12 @@ bindings.global = function ()
                   {description = "show the menubar", group = "launcher"}),
 
         -- Screenshots
+        awful.key({ }, "Print",
+                  function ()
+                      awful.util.spawn_with_shell("scrot '%Y-%m-%d-%H%m%s_$wx$h.png' -e 'mv $f ~/images/screenshots'")
+                  end,
+                  {description = "Make screenshot", group = "screenshots"}),
+
         awful.key({ bindings.modkey,  "Control" }, "s",
                   function ()
                       awful.util.spawn_with_shell("sleep 1 && scrot '%Y-%m-%d_$wx$h.png' -s -e 'mv $f ~/images/screenshots'")

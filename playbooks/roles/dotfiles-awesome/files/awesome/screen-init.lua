@@ -30,10 +30,8 @@ local function set_wallpaper(s)
 end
 
 local function init_screen (screen)
-    -- Wallpaper
     set_wallpaper(screen)
 
-    -- Each screen has its own tag table.
     awful.tag(
     -- 'α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η', 'θ', 'ι', 'κ', 'λ', 'μ', 'ν', 'ξ', 'ο', 'π', 'ρ', 'ς', 'σ', 'τ', 'υ', 'φ', 'χ', 'ψ',
     --  { 'α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η', 'θ', 'ι' },
@@ -52,65 +50,64 @@ local function init_screen (screen)
         awful.layout.layouts[1]
     )
 
---    local arrow = separators.arrow_left(beautiful.bg_normal, "alpha")
-
-    -- Create a promptbox for each screen
     screen.promptbox = awful.widget.prompt()
 
-    -- Create an imagebox widget which will contains an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
-    local mylayoutbox = awful.widget.layoutbox(screen)
-    mylayoutbox:buttons(awful.util.table.join(
+    local layoutbox = awful.widget.layoutbox(screen)
+    layoutbox:buttons(awful.util.table.join(
        awful.button({ }, 1, function () awful.layout.inc( 1) end),
        awful.button({ }, 3, function () awful.layout.inc(-1) end),
        awful.button({ }, 4, function () awful.layout.inc( 1) end),
        awful.button({ }, 5, function () awful.layout.inc(-1) end)
     ))
 
-    -- Create a taglist widget
-    local mytaglist = awful.widget.taglist(
+    local taglist = awful.widget.taglist(
         screen,
         awful.widget.taglist.filter.all,
         require('bindings').taglist_buttons()
     )
 
-    -- Create a tasklist widget
-    local mytasklist = awful.widget.tasklist(
+    local tasklist = awful.widget.tasklist(
         screen,
         awful.widget.tasklist.filter.currenttags,
         require('bindings').tasklist_buttons()
     )
 
-    -- Create the wibox
-    local mywibox = awful.wibar({
+    local topbar = awful.wibar({
         position = "top",
         opacity = .9,
+        --border_width = 2,
+        --border_color = '#444444',
         screen = screen
     })
 
-    -- define your battery widget
-    -- battery = battery_widget({
-    --     adapter = "BAT1",
-    --     battery_prefix = "",
-    --     timeout = 5
-    -- })
+    local right
+    if screen.index == 1 then
+        local clock = wibox.widget.textclock("%Y-%m-%d %H:%M ", 1)
+        --local calendar = awful.widget.calendar.year()
+        --calendar:attach(clock)
+        right = {
+            layout = wibox.layout.fixed.horizontal,
+            wibox.widget.systray(),
+            awful.widget.keyboardlayout(),
+            clock,
+            layoutbox
+        }
+    else
+        right = {
+            layout = wibox.layout.fixed.horizontal,
+            layoutbox
+        }
+    end
 
-    mywibox:setup {
+    topbar:setup {
         layout = wibox.layout.align.horizontal,
         {
             layout = wibox.layout.fixed.horizontal,
-            mytaglist,
+            taglist,
             screen.promptbox,
         },
-        mytasklist,
-        {
-            layout = wibox.layout.fixed.horizontal,
-            awful.widget.keyboardlayout(),
-            wibox.widget.systray(),
-            -- battery.widget,
-            wibox.widget.textclock(" %x %H:%M ", 1),
-            mylayoutbox,
-        },
+        tasklist,
+        right
     }
 
 end
