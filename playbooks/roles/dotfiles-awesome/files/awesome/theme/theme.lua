@@ -11,18 +11,16 @@ theme.wallpaper = nil
 theme.font = "DejaVu Sans Mono Book 8"
 
 -- {{{ Colors
---theme.fg_normal = "#FEFEFE"
-theme.fg_normal = "#9E9E9E"
---theme.fg_focus = "#32D6FF"
-theme.fg_focus = "#EBEBFF"
---theme.fg_urgent = "#C83F11"
+--theme.bg_normal = "#242424"
+theme.bg_normal = "#000000cc"
+theme.fg_normal = "#9e9e9e"
+
+theme.bg_focus = "#242424aa"
+theme.fg_focus = "#ebebff"
+
+theme.bg_urgent = "#ffffff"
 theme.fg_urgent = "#000000"
---theme.bg_normal = "#222222"
-theme.bg_normal = "#242424"
---theme.bg_focus = "#1E2320"
-theme.bg_focus = "#242424"
---theme.bg_urgent = "#3F3F3F"
-theme.bg_urgent = "#FFFFFF"
+
 theme.bg_systray = theme.bg_normal
 -- }}}
 

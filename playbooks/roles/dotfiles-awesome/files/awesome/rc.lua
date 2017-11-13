@@ -6,9 +6,8 @@ require('error-handling')
 
 beautiful.init(require("theme/theme"))
 
-terminal = "x-terminal-emulator"
+terminal = "termite"
 editor = "vim"
-editor_cmd = terminal .. " -e " .. editor
 
 require('layouts')
 

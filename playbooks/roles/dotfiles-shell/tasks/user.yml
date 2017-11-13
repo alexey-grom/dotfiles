@@ -10,6 +10,7 @@
   - {src: "psqlrc", dest: "~/.psqlrc"}
   - {src: "curlrc", dest: "~/.curlrc"}
   - {src: "wgetrc", dest: "~/.wgetrc"}
+  - {src: "inputrc", dest: "~/.inputrc"}
 
 - git:
     repo: "https://github.com/nojhan/liquidprompt.git"

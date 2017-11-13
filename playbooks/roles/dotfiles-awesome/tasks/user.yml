@@ -3,12 +3,24 @@
   - ~/.config/awesome/
   - ~/.config/rofi/
 
-- copy: src=awesome/ dest=~/.config/awesome/
-- copy: src=rofi.conf dest=~/.config/rofi/config
+- synchronize:
+    src={{ role_path }}/files/{{ item.src }}
+    dest={{ item.dest }}
+  with_items:
+  - {src: awesome/, dest: ~/.config/awesome/}
+  - {src: rofi.conf, dest: ~/.config/rofi/config}
 
 - git:
     repo: "https://github.com/lcpz/lain.git"
     dest: ~/.config/awesome/lain/
+
+- git:
+    repo: "https://github.com/lcpz/awesome-freedesktop"
+    dest: ~/.config/awesome/freedesktop/
+
+- git:
+    repo: "https://github.com/Mic92/vicious"
+    dest: ~/.config/awesome/vicious/
 
 #- git:
 #    repo: "https://github.com/streetturtle/awesome-wm-widgets.git"
