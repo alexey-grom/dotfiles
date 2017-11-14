@@ -27,6 +27,7 @@ cached="$4"          # Path that should be used to cache image previews
 preview_images="$5"  # "True" if image previews are enabled, "False" otherwise.
 
 maxln=200    # Stop after $maxln lines.  Can be used like ls | head -n $maxln
+maxsz="128k"  # Stop after $maxsz bytes.  Can be used like ls | head -c $maxsz
 
 # Find out something about the file:
 mimetype=$(file --mime-type -Lb "$path")
@@ -45,6 +46,8 @@ trim() { head -n "$maxln"; }
 
 # wraps highlight to treat exit code 141 (killed by SIGPIPE) as success
 safepipe() { "$@"; test $? = 0 -o $? = 141; }
+
+safehuge() { cat "$1" | head -c "$maxsz" | head -n "$maxln" | ${@:2} }
 
 # Image previews, if enabled in ranger.
 if [ "$preview_images" = "True" ]; then
@@ -105,8 +108,10 @@ case "$mimetype" in
             pygmentize_format=terminal
             highlight_format=ansi
         fi
-        try safepipe highlight --out-format=${highlight_format} "$path" && { dump | trim; exit 5; }
-        try safepipe pygmentize -f ${pygmentize_format} "$path" && { dump | trim; exit 5; }
+        try safepipe safehuge "$path" highlight --out-format=${highlight_format} && { dump | trim; exit 5; }
+        #try safepipe highlight --out-format=${highlight_format} "$path" && { dump | trim; exit 5; }
+        try safepipe safehuge "$path" pygmentize -f ${pygmentize_format} && { dump | trim; exit 5; }
+        #try safepipe pygmentize -f ${pygmentize_format} "$path" && { dump | trim; exit 5; }
         exit 2;;
     # Ascii-previews of images:
     image/*)
