@@ -1,5 +1,6 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
+local bindings = require("bindings")
 
 local rules = {}
 
@@ -13,8 +14,8 @@ rules.install = function ()
                          border_color = beautiful.border_normal,
                          focus = awful.client.focus.filter,
                          raise = true,
-                         keys = require('bindings').clientkeys(),
-                         buttons = require('bindings').clientbuttons(),
+                         keys = bindings.clientkeys(),
+                         buttons = bindings.clientbuttons(),
                          screen = awful.screen.preferred,
                          placement = awful.placement.no_overlap+awful.placement.no_offscreen
          }
@@ -70,6 +71,10 @@ rules.install = function ()
           properties = { opacity = .9 } },
         { rule_any = { class = { "thunar", "Thunar" } },
           properties = { opacity = .9 } },
+        { rule_any = { class = { "sublime_text", "Sublime_text" } },
+          properties = { opacity = .95 } },
+        { rule_any = { class = { "jetbrains-idea" } },
+          properties = { opacity = .95 } },
         { rule_any = { class = { "jetbrains-pycharm" } },
           properties = { opacity = .95 } },
         -- { rule = { class = "Liferea" },

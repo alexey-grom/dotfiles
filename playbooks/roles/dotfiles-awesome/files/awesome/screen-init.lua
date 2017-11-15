@@ -9,8 +9,7 @@ local tags = require("tags")
 local bindings = require("bindings")
 --local hostname = require("hostname")
 
-
-lain.widget.calendar()
+--lain.widget.calendar()
 
 local wallpapers = {
     os.getenv("HOME") .. "/.config/awesome/wallpapers/x-left.jpg",
@@ -65,8 +64,9 @@ local function create_top_bar(screen)
 
     local bar = awful.wibar({
         position = "top",
-        opacity = .95,
-        screen = screen
+        opacity = .9,
+        screen = screen,
+        height = 20,
     })
 
     local clock = wibox.widget.textclock("%Y-%m-%d %a %H:%M ", 1)

@@ -8,7 +8,8 @@ theme.wallpaper = nil
 -- }}}
 
 -- {{{ Styles
-theme.font = "DejaVu Sans Mono Book 8"
+--theme.font = "DejaVu Sans Mono Book 8"
+theme.font = "Source Code Pro Medium 10"
 
 -- {{{ Colors
 --theme.bg_normal = "#242424"
@@ -57,8 +58,11 @@ theme.border_marked = "#CC9393"
 --theme.taglist_fg_focus = "#00CCFF"
 --theme.tasklist_bg_focus = "#222222"
 --theme.tasklist_fg_focus = "#00CCFF"
-theme.taglist_fg_focus = "#EDEFFF"
-theme.taglist_bg_focus = "#242424"
+
+-- {{{ Taglist
+theme.taglist_fg_focus = "#ffffff"
+theme.taglist_bg_focus = "#444444"
+-- }}}
 
 
 
