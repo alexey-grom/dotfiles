@@ -9,38 +9,26 @@ if ! shopt -oq posix; then
   fi
 fi
 
-_complete_mosh_hosts ()
-{
-        COMPREPLY=()
-        cur="${COMP_WORDS[COMP_CWORD]}"
-        comp_ssh_hosts=`
-                cat ~/.ssh/config | \
-                        grep "^Host " | \
-                        awk '{print $2}';
-                cat ~/.ssh/config.d/* | \
-                        grep "^Host " | \
-                        awk '{print $2}'
-                `
-        COMPREPLY=( $(compgen -W "${comp_ssh_hosts}" -- $cur))
-        return 0
+function _get-hosts () {
+  echo `cat "$@" | grep "^Host " | awk '{print $2}'`
 }
-complete -F _complete_ssh_hosts mosh
 
-_complete_ssh_hosts ()
-{
-        COMPREPLY=()
-        cur="${COMP_WORDS[COMP_CWORD]}"
-        comp_ssh_hosts=`
-                cat ~/.ssh/config | \
-                        grep "^Host " | \
-                        awk '{print $2}';
-                cat ~/.ssh/config.d/* | \
-                        grep "^Host " | \
-                        awk '{print $2}'
-                `
-        COMPREPLY=( $(compgen -W "${comp_ssh_hosts}" -- $cur))
-        return 0
+function _get-known-hosts () {
+  echo `cat $@ | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;
 }
-complete -F _complete_ssh_hosts ssh
+
+function _get-autocomplete-hosts () {
+  local w=`
+    _get-hosts ~/.ssh/config;
+    _get-hosts ~/.ssh/config.d/*;
+  `
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  COMPREPLY=( $(compgen -W "$w" -- $cur))
+  return 0
+}
+
+complete -F _get-autocomplete-hosts mosh
+complete -F _get-autocomplete-hosts ssh
+complete -F _get-autocomplete-hosts scp
 
 # vi:syntax=sh

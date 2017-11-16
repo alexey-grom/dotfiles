@@ -9,5 +9,10 @@
   include_tasks: root.yml
   when: is_termite_exist.rc != 0
 
+- shell: "whoami | grep root"
+  ignore_errors: True
+  register: isroot
+
 - name: Dotfiles
   include_tasks: user.yml
+  when: isroot.rc != 0

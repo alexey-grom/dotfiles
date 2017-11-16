@@ -12,8 +12,8 @@ alias cal3="cal -3"
 alias xlock="i3lock -c 000000 -f"
 alias calcurse="LANG=en_US.UTF-8 calcurse"
 
-alias mc='LANG=en_US.UTF-8 EDITOR=vim mc'
-alias ranger='LANG=en_US.UTF-8 EDITOR=vim ranger'
+alias mc='LANG=en_US.UTF-8 mc'
+alias ranger='LANG=en_US.UTF-8 ranger'
 
 alias glog="git log --graph --pretty=format:'%C(auto)%h -%d %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 

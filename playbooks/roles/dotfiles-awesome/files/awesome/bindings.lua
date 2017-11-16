@@ -142,9 +142,9 @@ bindings.global = function ()
 
         awful.key({ bindings.modkey, "Shift" }, "l",
                   function ()
-                      awful.spawn("i3lock -c 000000 -f -e")
+                      awful.util.spawn_with_shell("~/.bin/i3lockpp blur -f -e")
                   end,
-                  {description = "open a terminal", group = "launcher"}),
+                  {description = "lock screen", group = "launcher"}),
 
         -- Prompt
         awful.key({ bindings.modkey }, "r",

@@ -1,8 +1,17 @@
 - hosts: all
   vars:
-  - purge_vundle_git: True
-  - root_install_nvim: True
+    purge_vundle_git: True
+    root_install_nvim: True
   roles:
+    # - role: debian-upgrade
+    #   tags: [maintenance]
+
+    - role: debian-docker
+      tags: [setup, maintenance]
+
+    - role: debian-deploy-user
+      tags: [setup, users]
+
     - role: dotfiles-ssh
       tags: [console, ssh]
 

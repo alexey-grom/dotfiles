@@ -40,6 +40,7 @@ else
     " " overrides
     highlight SpecialKey ctermbg=none cterm=none ctermfg=DarkGray
     highlight NonText ctermbg=none cterm=none ctermfg=DarkGray
+    highlight ColorColumn ctermbg=235 guibg=#FFC600
     " " syntax reset
 
 endif

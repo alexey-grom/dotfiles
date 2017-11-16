@@ -1,0 +1,6 @@
+- name: Create deploy user
+  user:
+    name: deploy
+    groups: docker
+    shell: /bin/bash
+    state: present

@@ -2,7 +2,7 @@
   with_items:
     - lightdm
     - thunar
-    - screenfetch
+    - neofetch
     - arandr
 
 - apt: name={{ item }} state=present
@@ -17,8 +17,6 @@
 - file: path=/usr/share/images/ state=directory
 - copy: src=hi-there.jpg dest=/usr/share/images/hi-there.jpg
 - copy: src=lightdm-gtk-greeter.conf dest=/etc/lightdm/
-
-- debug: var=hithere
 
 - shell: cat /etc/hostname
   register: hostname

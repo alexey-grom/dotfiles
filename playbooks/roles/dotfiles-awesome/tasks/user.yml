@@ -2,13 +2,19 @@
   with_items:
   - ~/.config/awesome/
   - ~/.config/rofi/
+  - ~/.bin/
+
+- copy:
+    src={{ role_path }}/files/{{ item.src }}
+    dest={{ item.dest }}
+  with_items: "{{ files }}"
+  when: ansible_connection == "chroot"
 
 - synchronize:
     src={{ role_path }}/files/{{ item.src }}
     dest={{ item.dest }}
-  with_items:
-  - {src: awesome/, dest: ~/.config/awesome/}
-  - {src: rofi.conf, dest: ~/.config/rofi/config}
+  with_items: "{{ files }}"
+  when: ansible_connection != "chroot"
 
 - git:
     repo: "https://github.com/lcpz/lain.git"

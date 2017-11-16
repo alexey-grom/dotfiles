@@ -1,0 +1,4 @@
+files:
+  - {src: awesome/, dest: ~/.config/awesome/}
+  - {src: rofi.conf, dest: ~/.config/rofi/config}
+  - {src: bin/i3lockpp, dest: ~/.bin/i3lockpp}

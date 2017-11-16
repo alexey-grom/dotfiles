@@ -47,7 +47,7 @@ trim() { head -n "$maxln"; }
 # wraps highlight to treat exit code 141 (killed by SIGPIPE) as success
 safepipe() { "$@"; test $? = 0 -o $? = 141; }
 
-safehuge() { cat "$1" | head -c "$maxsz" | head -n "$maxln" | ${@:2} }
+safehuge() { cat "$1" | head -c "$maxsz" | head -n "$maxln" | "$2"; }
 
 # Image previews, if enabled in ranger.
 if [ "$preview_images" = "True" ]; then
@@ -108,10 +108,11 @@ case "$mimetype" in
             pygmentize_format=terminal
             highlight_format=ansi
         fi
-        try safepipe safehuge "$path" highlight --out-format=${highlight_format} && { dump | trim; exit 5; }
+        try safepipe safehuge "$path" "highlight --out-format=${highlight_format}" && { dump | trim; exit 5; }
         #try safepipe highlight --out-format=${highlight_format} "$path" && { dump | trim; exit 5; }
-        try safepipe safehuge "$path" pygmentize -f ${pygmentize_format} && { dump | trim; exit 5; }
+        try safepipe safehuge "$path" "pygmentize -f ${pygmentize_format}" && { dump | trim; exit 5; }
         #try safepipe pygmentize -f ${pygmentize_format} "$path" && { dump | trim; exit 5; }
+        try safepipe safehuge "$path" "cat" && { dump | trim; exit 5; }
         exit 2;;
     # Ascii-previews of images:
     image/*)

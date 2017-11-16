@@ -7,11 +7,11 @@
 -- show execution times
 \timing
 -- limit paging
-\pset pager off
+\pset pager on
 -- replace nulls
 \pset null В¤
 \pset linestyle unicode
-\pset border 2
+\pset border 1
 
 -- colorize
 --\set PROMPT1 '%[%033[33;1m%]%x%[%033[0m%]%[%033[1m%]%/%[%033[0m%]%R%# '

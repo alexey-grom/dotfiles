@@ -12,6 +12,8 @@ shopt -s checkwinsize
 # build up
 #
 
+export EDITOR=vim
+
 source ~/.config/bash/history
 source ~/.config/bash/completion
 source ~/.config/bash/aliases
