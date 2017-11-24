@@ -1,11 +1,13 @@
 function run-ssh-tunnel () {
   local server=$1
   local port=${2:-9191}
+  local host="0.0.0.0"
   if [ -z "$server" ]; then
     echo "Usage: run-ssh-tunnel <server> [<port>]"
     return
   fi
-  ssh -D ${port} $server -N
+  echo "Start socks5 on $host:$port"
+  ssh -D $host:$port $server -N
 }
 
 function run-sshuttle () {

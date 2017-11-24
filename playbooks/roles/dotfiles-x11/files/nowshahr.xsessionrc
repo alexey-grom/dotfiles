@@ -1,11 +1,7 @@
 #!/bin/bash
 
-# exec_if_possible () {
-#   if [ ! -z type "$1" &>/dev/null ]; then
-#     return
-#   fi
-#   ${*:1} &
-# }
+# /usr/bin/xcompmgr -c -f -D3 &
+/usr/bin/xcompmgr &
 
 # setxkbmap -layout us,ru -option
 # setxkbmap -layout us,ru -option grp:shifts_toggle,grp_led:scroll
