@@ -51,7 +51,7 @@ function run-with-socks5 () {
     echo "Usage: run-with-socks5 <host:port> <command> [<args...>]"
     return
   fi
-  SOCKS5_SERVER=$1 socksify ${@:2}
+  PROXYCHAINS_SOCKS5=$1 proxychains ${@:2}
 }
 
 function anything-with-proxy () {
@@ -60,4 +60,8 @@ function anything-with-proxy () {
     return
   fi
   curl -s --$1 $2 http://httpbin.org/anything | jq '.'
+}
+
+function run-tor-proxy () {
+  docker run --name=tor -it -p 8118:8118 -p 9050:9050 -e TZ=UTC -d dperson/torproxy
 }

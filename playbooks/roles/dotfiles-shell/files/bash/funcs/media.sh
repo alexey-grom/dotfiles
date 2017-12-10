@@ -10,6 +10,10 @@ function mpv-vs () {
     mpv --sub-file="$2" "$1"
 }
 
+function mpv-loop () {
+    mpv --loop=inf $@
+}
+
 function fix-opus-codec () {
   local filename=$1
   local codec=$(exiftool "$filename" | grep A_OPUS)
