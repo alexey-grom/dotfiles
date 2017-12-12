@@ -11,7 +11,7 @@ function mpv-vs () {
 }
 
 function mpv-loop () {
-    mpv --loop=inf $@
+    mpv --loop=inf "$@"
 }
 
 function fix-opus-codec () {
@@ -39,4 +39,3 @@ function run-with-steam () {
   $(realpath ~)/.steam/bin32/steam-runtime/run.sh "${P}/${1}"
   cd $P
 }
-
