@@ -1,4 +1,4 @@
-- copy: src={{ item.src }} dest={{ item.dest }}
+- copy: src="{{ item.src }}" dest="{{ item.dest }}"
   with_items:
   - {src: "gitconfig", dest: "~/.gitconfig"}
   - {src: "gitignore_global", dest: "~/.gitignore_global"}

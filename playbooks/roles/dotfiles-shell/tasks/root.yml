@@ -6,7 +6,6 @@
     - htop
     - ncdu
     - git
-    # - dante-client
     - proxychains
     - jq
     - curl

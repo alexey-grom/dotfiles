@@ -1,5 +1,5 @@
 purge_vundle_git: False
 root_install_nvim: False
-files:
+vim_files:
   - {src: "ideavimrc", dest: "~/.ideavimrc"}
   - {src: "nvim/", dest: "~/.config/nvim/"}

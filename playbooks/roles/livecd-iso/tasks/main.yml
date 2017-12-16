@@ -48,7 +48,7 @@
     src: isolinux.cfg
     dest: "{{ inventory_hostname }}/live/isolinux"
 
-- copy: src={{ item.src }} dest="{{ inventory_hostname }}/live/{{ item.dest }}"
+- copy: src="{{ item.src }}" dest="{{ inventory_hostname }}/live/{{ item.dest }}"
   with_items:
     - {src: "memtest86+.bin", dest: "live/memtest"}
     - {src: "isolinux.cfg", dest: "isolinux"}

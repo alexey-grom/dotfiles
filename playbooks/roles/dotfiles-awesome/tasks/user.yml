@@ -4,16 +4,17 @@
   - ~/.config/rofi/
   - ~/.bin/
 
+# todo: preserve permissions
 - copy:
     src={{ role_path }}/files/{{ item.src }}
     dest={{ item.dest }}
-  with_items: "{{ files }}"
+  with_items: "{{ awesome_files }}"
   when: ansible_connection == "chroot"
 
 - synchronize:
     src={{ role_path }}/files/{{ item.src }}
     dest={{ item.dest }}
-  with_items: "{{ files }}"
+  with_items: "{{ awesome_files }}"
   when: ansible_connection != "chroot"
 
 - git:

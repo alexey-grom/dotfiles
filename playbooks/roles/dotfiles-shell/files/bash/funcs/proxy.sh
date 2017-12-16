@@ -54,6 +54,10 @@ function run-with-socks5 () {
   PROXYCHAINS_SOCKS5=$1 proxychains ${@:2}
 }
 
+function run-with-tor () {
+  run-with-socks5 localhost:9050 ${1:-/bin/bash}
+}
+
 function anything-with-proxy () {
   if [ -z "$1" ] || [ -z "$2" ]; then
     echo "Usage: anything-with-proxy <proxy|socks4|socks5> <host:port>"

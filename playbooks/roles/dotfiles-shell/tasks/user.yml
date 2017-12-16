@@ -4,12 +4,12 @@
   - ~/.config/bash/
   - ~/.config/htop/
 
-- copy: src={{ item.src }} dest={{ item.dest }}
-  with_items: "{{ files }}"
+- copy: src="{{ item.src }}" dest="{{ item.dest }}"
+  with_items: "{{ shell_files }}"
   when: ansible_connection == "chroot"
 
-- synchronize: src={{ item.src }} dest={{ item.dest }}
-  with_items: "{{ files }}"
+- synchronize: src="{{ item.src }}" dest="{{ item.dest }}"
+  with_items: "{{ shell_files }}"
   when: ansible_connection != "chroot"
 
 - git:
