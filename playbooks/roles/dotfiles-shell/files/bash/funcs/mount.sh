@@ -24,3 +24,15 @@ function automount-this () {
   mount $device $mountpoint
   cd $mountpoint
 }
+
+function mount-with-ssh () {
+  if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
+    echo "Usage: mount-ssh <server> <path> <mountpoint>"
+    return 
+  fi
+  local server=$1
+  local path=$2
+  local mountpoint=$3
+  [ ! -d "$mountpoint" ] && mkdir "$mountpoint"
+  sshfs -o follow_symlinks ${server}:${path} $mountpoint
+}
