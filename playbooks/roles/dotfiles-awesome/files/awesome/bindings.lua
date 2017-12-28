@@ -179,19 +179,19 @@ bindings.global = function ()
         -- Screenshots
         awful.key({ }, "Print",
                   function ()
-                      awful.util.spawn_with_shell("scrot '%Y-%m-%d-%H%m%s_$wx$h.png' -e 'mv $f ~/images/screenshots'")
+                      awful.util.spawn_with_shell("scrot '%Y-%m-%d-%H%M%S-$wx$h.png' -e 'mv $f ~/images/screenshots'")
                   end,
                   {description = "Make screenshot", group = "screenshots"}),
 
         awful.key({ bindings.modkey, "Control" }, "s",
             function ()
-                awful.util.spawn_with_shell("sleep 1 && scrot '%Y-%m-%d-%H%m%s_$wx$h.png' -s -e 'mv $f ~/images/screenshots'")
+                awful.util.spawn_with_shell("sleep 1 && scrot '%Y-%m-%d-%H%M%S-$wx$h.png' -s -e 'mv $f ~/images/screenshots'")
             end,
             {description = "Make screenshot of selected area", group = "screenshots"}),
 
         awful.key({ bindings.modkey, "Control", "Shift" }, "s",
             function ()
-                awful.util.spawn_with_shell("sleep 1 && scrot '%Y-%m-%d-%H%m%s_$wx$h.png' -u -e 'mv $f ~/images/screenshots'")
+                awful.util.spawn_with_shell("sleep 1 && scrot '%Y-%m-%d-%H%M%S-$wx$h.png' -u -e 'mv $f ~/images/screenshots'")
             end,
             {description = "Make screenshot of focused window", group = "screenshots"})
 

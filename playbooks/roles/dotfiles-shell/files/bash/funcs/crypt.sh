@@ -9,4 +9,3 @@ function gpg-encrypt () {
 function gpg-decrypt () {
     gpg -o - -d $1
 }
-

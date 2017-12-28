@@ -42,7 +42,7 @@ function docker-run () {
   shift "$((OPTIND-1))"
   parts+=(
     "${1:-python:3}"
-    "${2:-/bin/bash}"
+    "${@:2}"
   )
   local command="${parts[@]}"
   echo $command
@@ -55,4 +55,12 @@ function docker-show-ip-of () {
 
 function run-smtp-server () {
   docker run --rm -it -p 25:1025 python python -m smtpd -n -c DebuggingServer 0.0.0.0:1025
+}
+
+function docker-logs () {
+  docker logs --follow --tail=100 $1
+}
+
+function docker-pretty-stats () {
+  docker stats --format "table {{.Name}}\t{{.Container}}\t{{.CPUPerc}}\t{{.MemUsage}}"
 }
