@@ -71,5 +71,9 @@ function run-tor-proxy () {
 }
 
 function find-proxies () {
-  docker-run alxgrmv/proxybroker find --lvl High --types SOCKS5 --strict --countries RU
+  docker-run alxgrmv/proxybroker find --lvl High --types SOCKS5 --strict $@
+}
+
+function find-ru-proxies () {
+  docker-run alxgrmv/proxybroker find --lvl High --types SOCKS5 --strict --countries RU $@
 }

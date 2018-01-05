@@ -36,3 +36,14 @@ function mount-with-ssh () {
   [ ! -d "$mountpoint" ] && mkdir "$mountpoint"
   sshfs -o follow_symlinks ${server}:${path} $mountpoint
 }
+
+function mount-ramdisk () {
+  if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
+    echo "Usage: mount-ramdisk <point> [<size>]"
+    return
+  fi
+  local mountpoint=$1
+  local size=${2:-2048M}
+  [ ! -d "$mountpoint" ] && mkdir "$mountpoint"
+  sudo mount -t tmpfs -o size=$size tmpfs $mountpoint
+}
