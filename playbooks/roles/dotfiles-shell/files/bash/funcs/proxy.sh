@@ -77,3 +77,8 @@ function find-proxies () {
 function find-ru-proxies () {
   docker-run alxgrmv/proxybroker find --lvl High --types SOCKS5 --strict --countries RU $@
 }
+
+function run-zap () {
+  docker run --name=zap -d --rm -u zap -p 6770:8080 -p 6771:8090 -i owasp/zap2docker-stable zap-webswing.sh
+  xdg-open "http://127.0.0.1:6770/?anonym=true&app=ZAP"
+}

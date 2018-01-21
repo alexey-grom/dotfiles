@@ -61,6 +61,18 @@ function docker-logs () {
   docker logs --follow --tail=100 $1
 }
 
+function docker-exec () {
+  docker exec -it $1 $2
+}
+
+function docker-shell () {
+  docker-exec $1 /bin/bash
+}
+
+function docker-host-ip () {
+  /sbin/ip route|awk '/default/ { print $3 }'
+}
+
 function docker-pretty-stats () {
   docker stats --format "table {{.Name}}\t{{.Container}}\t{{.CPUPerc}}\t{{.MemUsage}}"
 }

@@ -9,3 +9,8 @@ function gpg-encrypt () {
 function gpg-decrypt () {
     gpg -o - -d $1
 }
+
+function reload-agent () {
+    killall ssh-agent
+    eval `ssh-agent`
+}
