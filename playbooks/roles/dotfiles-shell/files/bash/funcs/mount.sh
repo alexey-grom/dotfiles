@@ -20,8 +20,8 @@ function automount-this () {
     return
   fi
   mountpoint=/media/$uuid/
-  mkdir $mountpoint
-  mount $device $mountpoint
+  [ ! -d "$mountpoint" ] && mkdir $mountpoint
+  sudo mount $device $mountpoint
   cd $mountpoint
 }
 
