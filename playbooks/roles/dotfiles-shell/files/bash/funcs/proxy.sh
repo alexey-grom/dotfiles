@@ -82,3 +82,11 @@ function run-zap () {
   docker run --name=zap -d --rm -u zap -p 6770:8080 -p 6771:8090 -i owasp/zap2docker-stable zap-webswing.sh
   xdg-open "http://127.0.0.1:6770/?anonym=true&app=ZAP"
 }
+
+function clean-routes () {
+  tun=${1:-tun1}
+  ip ro | grep $tun | cut -d' ' -f1 | grep -v "10\." | while read line; do
+    sudo ip ro del $line
+  done
+  ip ro | grep $tun
+}

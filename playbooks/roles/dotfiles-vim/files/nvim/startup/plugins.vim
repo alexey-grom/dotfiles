@@ -9,37 +9,35 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'flazz/vim-colorschemes'
-
-Plugin 'tpope/vim-surround'
-Plugin 'guns/vim-sexp'
-
-Plugin 'vim-airline/vim-airline' " +
-Plugin 'vim-airline/vim-airline-themes' " +
-
-Plugin 'vim-ctrlspace/vim-ctrlspace' " +
-
-Plugin 'scrooloose/nerdtree' " +
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-
-Plugin 'tpope/vim-fugitive' " интеграция с гитом
-" Plugin 'airblade/vim-gitgutter' " изменения слева
-
-" autocomplete
-"Plugin 'shougo/deoplete.nvim'
-"Plugin 'Valloric/YouCompleteMe'
-
-Plugin 'rstacruz/sparkup' " zen coding
-Plugin 'scrooloose/nerdcommenter' " commenting
-
-Plugin 'ekalinin/Dockerfile.vim'  "
-
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " colors
 Plugin 'chriskempson/base16-vim'
 Plugin 'jellybeans.vim'
 " Plugin 'mswift42/vim-themes'
 
-"Plugin 'easymotion/vim-easymotion' " быстрое перемещение
-Plugin 'majutsushi/tagbar' " the tags of the current file
+Plugin 'tpope/vim-surround'
+Plugin 'guns/vim-sexp'
+Plugin 'tpope/vim-fireplace'
+
+Plugin 'vim-ctrlspace/vim-ctrlspace'
+Plugin 'scrooloose/nerdtree'
+
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'tpope/vim-fugitive'
+" Plugin 'airblade/vim-gitgutter'
+
+" autocomplete
+"Plugin 'shougo/deoplete.nvim'
+"Plugin 'Valloric/YouCompleteMe'
+
+Plugin 'rstacruz/sparkup'
+Plugin 'scrooloose/nerdcommenter'
+
+Plugin 'ekalinin/Dockerfile.vim'  "
+
+"Plugin 'easymotion/vim-easymotion'
+Plugin 'majutsushi/tagbar'
 "Plugin 'fatih/vim-go' "
 "Plugin 'klen/python-mode'
 "Plugin 'L9' " plugin from http://vim-scripts.org/vim/scripts.html
@@ -47,7 +45,7 @@ Plugin 'majutsushi/tagbar' " the tags of the current file
 
 " snippets
 " Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+" Plugin 'honza/vim-snippets'
 
 call vundle#end()
 filetype plugin indent on

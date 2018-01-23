@@ -70,7 +70,8 @@ function docker-shell () {
 }
 
 function docker-host-ip () {
-  /sbin/ip route|awk '/default/ { print $3 }'
+  ip ro | grep docker0 | awk '{print $NF}'
+  # /sbin/ip route|awk '/default/ { print $3 }'
 }
 
 function docker-pretty-stats () {

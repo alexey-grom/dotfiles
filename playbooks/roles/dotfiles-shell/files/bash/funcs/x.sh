@@ -24,3 +24,18 @@ function show-colors () {
   done
   echo -e "\e[m"
 }
+
+function dump-clipboards () {
+  sels=(primary clipboard)
+  for sel in "${sels[@]}"; do
+    echo
+    echo "<$sel>"
+    xclip -o -selection $sel
+    echo "</$sel>"
+    echo
+  done
+}
+
+function print-hr () {
+    echo "$(yes ${1:-*} | head -n$COLUMNS | tr -d '\n')"
+}

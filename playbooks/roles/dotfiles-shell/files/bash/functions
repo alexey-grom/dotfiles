@@ -5,6 +5,7 @@
 #     rm -rf $PROFILEDIR
 # }
 
+source ~/.config/bash/funcs/clojure.sh
 source ~/.config/bash/funcs/crypt.sh
 source ~/.config/bash/funcs/docker.sh
 source ~/.config/bash/funcs/environments.sh

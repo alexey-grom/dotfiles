@@ -14,3 +14,7 @@ function reload-agent () {
     killall ssh-agent
     eval `ssh-agent`
 }
+
+function datetime-stamp () {
+    date -u --iso-8601=seconds | sed 's/[^0-9]//g'
+}
