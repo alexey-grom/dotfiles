@@ -39,3 +39,11 @@ function run-with-steam () {
   $(realpath ~)/.steam/bin32/steam-runtime/run.sh "${P}/${1}"
   cd $P
 }
+
+function micon () {
+  pactl load-module module-loopback latency_msec=1
+}
+
+function micoff () {
+  pactl unload-module module-loopback
+}

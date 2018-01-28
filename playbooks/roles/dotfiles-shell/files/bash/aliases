@@ -14,6 +14,7 @@ alias calcurse="LANG=en_US.UTF-8 calcurse"
 
 alias mc='LANG=en_US.UTF-8 mc'
 alias ranger='LANG=en_US.UTF-8 ranger'
+alias emacs='LANG=en_US.UTF-8 emacs -nw'
 
 alias glog="git log --graph --pretty=format:'%C(auto)%h -%d %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
