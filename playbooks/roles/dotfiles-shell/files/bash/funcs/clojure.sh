@@ -3,10 +3,11 @@ function dlein-defaults () {
   echo """
     --rm -it \
     $(-iam) \
-    $(-pretty-shell $home) \
+    $(-pretty-shell /) \
     -v $(pwd):/app/ \
     -w /app/ \
-    -e HOME=/app/ \
+    -e HOME=/ \
+    -e LEIN_HOME=/app/ \
   """
 }
 
