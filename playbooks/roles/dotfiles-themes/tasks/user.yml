@@ -13,7 +13,7 @@
     dest: ~/.icons/Flat-Remix/
 
 - file:
-    src: "~/.icons/Flat-Remix/Flat Remix"
+    src: "~/.icons/Flat-Remix/Flat-Remix"
     dest: "~/.icons/Flat Remix"
     state: link
 

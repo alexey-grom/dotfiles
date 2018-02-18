@@ -30,6 +30,8 @@ let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
 let g:CtrlSpaceSaveWorkspaceOnExit = 1
 let g:CtrlSpaceIgnoredFiles = '\v(tmp|temp)[\/]'
 
+let g:sexp_enable_insert_mode_mappings = 0
+
 let NERDTreeIgnore=['__pycache__', '\.pyc']
 
 "autocmd FileType python highlight ColorColumn ctermbg=235 " подсветка ограничительной колонки

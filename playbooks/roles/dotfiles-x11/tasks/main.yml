@@ -14,8 +14,16 @@
   become_method: sudo
   when: hostname.stdout_lines[0] == 'nowshahr'
 
+- include_tasks: root-vepar.yml
+  become: yes
+  become_method: sudo
+  when: hostname.stdout_lines[0] == 'vepar'
+
 - include_tasks: user.yml
   when: isroot.rc != 0
 
 - include_tasks: user-nowshahr.yml
   when: isroot.rc != 0 and hostname.stdout_lines[0] == 'nowshahr'
+
+- include_tasks: user-vepar.yml
+  when: isroot.rc != 0 and hostname.stdout_lines[0] == 'vepar'

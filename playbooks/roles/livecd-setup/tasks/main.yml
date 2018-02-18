@@ -40,6 +40,9 @@
 - name: Systemd
   file: src=/bin/systemd path=/sbin/init state=link
 
+- name: Enable networkd
+  shell: systemctl enable systemd-networkd
+
 - name: Create a user
   user:
     name: user

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# /usr/bin/xcompmgr -c -f -D3 &
+/usr/bin/xcompmgr &
+
+# setxkbmap -layout us,ru -option
+# setxkbmap -layout us,ru -option grp:shifts_toggle,grp_led:scroll
+
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
+
+xrandr --output VIRTUAL1 --off --output DP3 --off --output DP2 --off --output DP1 --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI3 --off --output HDMI2 --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI1 --off

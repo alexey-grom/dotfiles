@@ -19,6 +19,7 @@ Plugin 'jellybeans.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'guns/vim-sexp'
 Plugin 'tpope/vim-fireplace'
+Plugin 'guns/vim-clojure-static'
 
 Plugin 'vim-ctrlspace/vim-ctrlspace'
 Plugin 'scrooloose/nerdtree'

@@ -67,11 +67,11 @@ function anything-with-proxy () {
 }
 
 function run-tor-proxy () {
-  docker run --name=tor -it -p 8118:8118 -p 9050:9050 -e TZ=UTC -d dperson/torproxy
+  docker run --name=tor --rm -it -p 8118:8118 -p 9050:9050 -e TZ=UTC -d dperson/torproxy
 }
 
 function find-proxies () {
-  docker-run alxgrmv/proxybroker find --lvl High --types SOCKS5 --strict $@
+  docker-run alxgrmv/proxybroker find --lvl High --types SOCKS5 --strict -f json | sed '1,2d; s/,\r$/\r/; $d'
 }
 
 function find-ru-proxies () {
