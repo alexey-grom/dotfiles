@@ -11,6 +11,7 @@
   shell: debootstrap \
           --variant={{ variant}} \
           --arch={{ arch }} \
+          --components={{ components }} \
           {{ release }} \
           {{ inventory_hostname }} \
           {{ repo }}

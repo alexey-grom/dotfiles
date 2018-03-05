@@ -1,1 +1,1 @@
-- copy: src=xsessionrc dest=~/.xsessionrc
+- copy: src=xsessionrc dest=~/.xsessionrc mode=preserve

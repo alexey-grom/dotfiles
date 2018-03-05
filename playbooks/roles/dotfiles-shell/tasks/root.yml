@@ -10,3 +10,4 @@
     - jq
     - curl
     - wget
+    - acpi

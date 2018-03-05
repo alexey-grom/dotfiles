@@ -70,6 +70,11 @@ function run-tor-proxy () {
   docker run --name=tor --rm -it -p 8118:8118 -p 9050:9050 -e TZ=UTC -d dperson/torproxy
 }
 
+function tor-new-nym () {
+  V="echo -e 'AUTHENTICATE \"'\"\$(cat /etc/tor/run/control.authcookie)\"'\"\nSIGNAL NEWNYM\nQUIT' | nc 127.0.0.1 9051"
+  docker exec -it tor /bin/bash -c "$V"
+}
+
 function find-proxies () {
   docker-run alxgrmv/proxybroker find --lvl High --types SOCKS5 --strict -f json | sed '1,2d; s/,\r$/\r/; $d'
 }

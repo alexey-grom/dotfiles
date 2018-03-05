@@ -6,6 +6,7 @@
     - net-tools
     - tcpdump
     - traceroute
+    - iputils-ping
     - openssh-client
     - openssh-server
     - isc-dhcp-client
@@ -16,6 +17,18 @@
     - unzip
     - atool
     - uuid-runtime
+    - usbutils
+    - firmware-misc-nonfree
+    - wicd-curses
+    - wicd-cli
+    - wicd-gtk
+    - mpv
+    - cmus
+    - xnview
+    - djview4
+    - qpdfview
+    - qpdfview-djvu-plugin
+    - keepassx
 
 - name: Randomize a hostname
   shell: echo $(uuidgen | cut -d '-' -f 1) > /etc/hostname
@@ -50,3 +63,11 @@
     shell: /bin/bash
     groups:
       - sudo
+
+- name: Allow 'user' to have passwordless sudo
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^user'
+    line: 'user ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'

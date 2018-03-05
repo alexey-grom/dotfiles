@@ -1,6 +1,7 @@
 #variant: buildd
 #variant: fakechroot
 variant: minbase
+components: main,contrib,non-free
 arch: amd64
 release: stretch
 repo: http://httpredir.debian.org/debian

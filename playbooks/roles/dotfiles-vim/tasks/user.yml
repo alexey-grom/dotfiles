@@ -1,12 +1,7 @@
 - file: path=~/.config/nvim/ state=directory recurse=True
 
-- copy: src="{{ item.src }}" dest="{{ item.dest }}"
+- copy: src="{{ item.src }}" dest="{{ item.dest }}" mode=preserve
   with_items: "{{ vim_files }}"
-  when: ansible_connection == "chroot"
-
-- synchronize: src="{{ item.src }}" dest="{{ item.dest }}"
-  with_items: "{{ vim_files }}"
-  when: ansible_connection != "chroot"
 
 - stat: path=~/.config/nvim/bundle/Vundle.vim
   register: vundle

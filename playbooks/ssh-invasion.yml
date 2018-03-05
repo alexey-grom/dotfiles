@@ -18,11 +18,27 @@
     - role: dotfiles-shell
       tags: [console, shell]
 
-    - role: dotfiles-tmux
-      tags: [console, tmux]
+    - role: dotfiles-ranger
+      tags: [console, ranger]
+
+    - role: dotfiles-vim
+      tags: [console, vim]
+
+- hosts: all
+  become: True
+  become_user: deploy
+  vars:
+  - purge_vundle_git: True
+  roles:
+    - role: dotfiles-ssh
+      tags: [console, ssh]
+
+    - role: dotfiles-shell
+      tags: [console, shell]
 
     - role: dotfiles-ranger
       tags: [console, ranger]
 
     - role: dotfiles-vim
       tags: [console, vim]
+

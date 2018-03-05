@@ -1,1 +1,1 @@
-- copy: src=vepar.xsessionrc dest=~/.xsessionrc
+- copy: src=vepar.xsessionrc dest=~/.xsessionrc mode=preserve

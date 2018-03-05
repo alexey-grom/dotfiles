@@ -1,6 +1,11 @@
 - name: Install system-wide packages
   apt: name={{ item }} state=present
   with_items:
+    - build-essential
+    - net-tools
+    - tcpdump
+    - traceroute
+    - iputils-ping
     - icedove
     - liferea
     - transmission-gtk
@@ -15,4 +20,9 @@
     - calcurse
     - keepassx
     - pastebinit
+    - usbutils
+    - firmware-misc-nonfree
     - wicd-curses
+    - wicd-cli
+    - wicd-gtk
+    - multibootusb

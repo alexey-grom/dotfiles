@@ -1,6 +1,14 @@
 - name: Create deploy user
   user:
     name: deploy
-    groups: docker
+    groups: sudo,docker
     shell: /bin/bash
     state: present
+
+- name: Allow 'deploy' to have passwordless sudo
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^deploy'
+    line: 'deploy ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'

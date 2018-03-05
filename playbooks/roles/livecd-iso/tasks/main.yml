@@ -65,16 +65,17 @@
 - file: path="live.iso" state=absent
 
 - name: Create iso
-  shell: genisoimage -rational-rock \
-                     -volid "Live" \
-                     -cache-inodes \
-                     -joliet \
-                     -hfs \
-                     -full-iso9660-filenames \
-                     -b isolinux/isolinux.bin \
-                     -c isolinux/boot.cat \
-                     -no-emul-boot \
-                     -boot-load-size 4 \
-                     -boot-info-table \
-                     -output ../live.iso \
-                     {{ inventory_hostname }}/live
+  shell: genisoimage \
+      -rational-rock \
+      -volid "Live" \
+      -cache-inodes \
+      -joliet \
+      -hfs \
+      -full-iso9660-filenames \
+      -b isolinux/isolinux.bin \
+      -c isolinux/boot.cat \
+      -no-emul-boot \
+      -boot-load-size 4 \
+      -boot-info-table \
+      -output ../live-{{ ansible_date_time.iso8601_basic_short }}.iso \
+      {{ inventory_hostname }}/live
