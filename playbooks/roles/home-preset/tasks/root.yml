@@ -25,4 +25,4 @@
     - wicd-curses
     - wicd-cli
     - wicd-gtk
-    - multibootusb
+    # - python3-multibootusb
