@@ -35,3 +35,6 @@
 
     - role: dotfiles-vim
       tags: [console, vim]
+
+    - role: dotfiles-emacs
+      tags: [console, emacs]

@@ -24,11 +24,14 @@
     - wicd-gtk
     - mpv
     - cmus
-    - xnview
     - djview4
     - qpdfview
     - qpdfview-djvu-plugin
     - keepassx
+
+- apt:
+    deb: https://download.xnview.com/XnViewMP-linux-x64.deb
+    force: yes
 
 - name: Randomize a hostname
   shell: echo $(uuidgen | cut -d '-' -f 1) > /etc/hostname

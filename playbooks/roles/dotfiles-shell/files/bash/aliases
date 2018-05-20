@@ -11,6 +11,7 @@ alias dmesg-less='sudo dmesg --color=always | less -R'
 alias cal3="cal -3"
 alias xlock="i3lock -c 000000 -f"
 alias calcurse="LANG=en_US.UTF-8 calcurse"
+alias spacemacs='emacs -nw'
 
 alias mc='LANG=en_US.UTF-8 mc'
 alias ranger='LANG=en_US.UTF-8 ranger'

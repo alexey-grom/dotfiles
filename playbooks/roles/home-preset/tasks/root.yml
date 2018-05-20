@@ -12,7 +12,6 @@
     - mpv
     - vlc
     - cmus
-    - xnview
     - apvlv
     - djview4
     - qpdfview
@@ -26,3 +25,7 @@
     - wicd-cli
     - wicd-gtk
     # - python3-multibootusb
+
+- apt:
+    deb: https://download.xnview.com/XnViewMP-linux-x64.deb
+    force: yes
