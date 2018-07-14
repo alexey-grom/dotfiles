@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+GTAGSLIBPATH=$PWD/.gtags/container/ \
+GTAGSROOT=$PWD \
+GTAGSDBPATH=$PWD/.gtags/src/ \
+GTAGSLABEL=ctags \
+    global $@
