@@ -3,3 +3,6 @@
   with_items:
     - git
     - emacs25
+    - socat
+    - exuberant-ctags
+    - global

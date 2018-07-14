@@ -12,7 +12,9 @@ shopt -s checkwinsize
 # build up
 #
 
+export VAGRANT_DEFAULT_PROVIDER=libvirt
 export EDITOR=vim
+export GTAGSGLOBAL=lglobal
 
 source ~/.config/bash/history
 source ~/.config/bash/completion
@@ -21,8 +23,6 @@ source ~/.config/bash/functions
 source ~/.config/bash/liquidprompt/liquidprompt
 
 PATH=$PATH:$(realpath ~)/.bin
-
-export VAGRANT_DEFAULT_PROVIDER=libvirt
 
 #
 # custom

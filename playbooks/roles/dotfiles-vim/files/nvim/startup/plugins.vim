@@ -2,53 +2,48 @@ set nocompatible
 set hidden
 filetype off
 
+set rtp+=~/.config/nvim/custom
+
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin()
+" set rtp+=~/.config/nvim/bundle/Vundle.vim
+" call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-Plugin 'VundleVim/Vundle.vim'
+" Plug 'VundleVim/Vundle.vim'
 
-Plugin 'flazz/vim-colorschemes'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-" colors
-Plugin 'chriskempson/base16-vim'
-Plugin 'jellybeans.vim'
-" Plugin 'mswift42/vim-themes'
+Plug 'flazz/vim-colorschemes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'chriskempson/base16-vim'
+Plug 'nanotech/jellybeans.vim'
+" Plug 'mswift42/vim-themes'
 
-Plugin 'tpope/vim-surround'
-Plugin 'guns/vim-sexp'
-Plugin 'tpope/vim-fireplace'
-Plugin 'guns/vim-clojure-static'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
-Plugin 'vim-ctrlspace/vim-ctrlspace'
-Plugin 'scrooloose/nerdtree'
+Plug 'tpope/vim-surround'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-fireplace'
+Plug 'guns/vim-clojure-static'
 
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'tpope/vim-fugitive'
-" Plugin 'airblade/vim-gitgutter'
+" Plug 'francoiscabrol/ranger.vim'
+Plug 'rafaqz/ranger.vim'
+Plug 'junegunn/fzf'
+Plug 'mileszs/ack.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'vim-scripts/gtags.vim'
 
-" autocomplete
-"Plugin 'shougo/deoplete.nvim'
-"Plugin 'Valloric/YouCompleteMe'
+Plug 'Shougo/deol.nvim'
 
-Plugin 'rstacruz/sparkup'
-Plugin 'scrooloose/nerdcommenter'
+Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-Plugin 'ekalinin/Dockerfile.vim'  "
+Plug 'rstacruz/sparkup'  " ?
+Plug 'scrooloose/nerdcommenter'  " ?
 
-"Plugin 'easymotion/vim-easymotion'
-Plugin 'majutsushi/tagbar'
-"Plugin 'fatih/vim-go' "
-"Plugin 'klen/python-mode'
-"Plugin 'L9' " plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'file:///home/gmarik/path/to/plugin' " git repos on your local machine (i.e. when working on your own plugin)
+" Plug 'ekalinin/Dockerfile.vim'  "
 
-" snippets
-" Plugin 'SirVer/ultisnips'
-" Plugin 'honza/vim-snippets'
-
-call vundle#end()
+call plug#end()
+" call vundle#end()
 filetype plugin indent on
 " To ignore plugin indent changes, instead use:
 "filetype plugin on

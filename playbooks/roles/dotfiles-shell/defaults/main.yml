@@ -8,3 +8,4 @@ shell_files:
   - {src: "wgetrc", dest: "~/.wgetrc"}
   - {src: "inputrc", dest: "~/.inputrc"}
   - {src: "htoprc", dest: "~/.config/htop/htoprc"}
+  - {src: "globalrc", dest: "~/.globalrc"}

@@ -12,4 +12,6 @@ set colorcolumn=80
 set tags=tags
 set foldmethod=indent
 set nofoldenable
-set clipboard+=unnamed
+" set clipboard+=unnamed
+set clipboard+=unnamedplus
+set nowrap

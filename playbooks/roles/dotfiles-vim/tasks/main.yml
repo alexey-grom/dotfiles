@@ -1,13 +1,4 @@
-- name: Check is nvim installed
-  shell: command -v nvim >/dev/null 2>&1
-  register: is_nvim_exists
-  ignore_errors: yes
-
-- name: Install
-  become: yes
-  become_method: sudo
-  include_tasks: root.yml
-  when: is_nvim_exists.rc != 0
+- include_tasks: root.yml
 
 - shell: "whoami | grep root"
   ignore_errors: True

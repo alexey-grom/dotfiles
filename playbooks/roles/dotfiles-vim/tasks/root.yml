@@ -1,12 +1,74 @@
-- name: Install vim
-  apt: name={{ item }} state=present
-  with_items:
-    - git
-    - neovim
-    - python-pip
-    - python3-pip
+- name: Check is nvim installed
+  shell: command -v nvim >/dev/null 2>&1
+  register: is_nvim_exists
+  ignore_errors: yes
 
-- shell: pip install neovim && pip3 install neovim
+- name: neovim
+  block:
+    - name: Install vim
+      apt: name={{ item }} state=present
+      with_items:
+        - git
+        - neovim
+        - python-pip
+        - python3-pip
+        - silversearcher-ag
+    - shell: pip install "neovim>=0.2.6" && pip3 install "neovim>=0.2.6"
+    - shell: update-alternatives --set vim /usr/bin/nvim
+  when: is_nvim_exists.rc != 0
+  become: yes
+  become_method: sudo
 
-- shell: update-alternatives --set vim /usr/bin/nvim
+- name: Check is fzf installed
+  shell: command -v fzf >/dev/null 2>&1
+  register: is_fzf_exists
+  ignore_errors: yes
+
+- name: fzf
+  block:
+    - stat: path=/usr/local/bin/fzf
+      register: fzf
+    - unarchive:
+        src: https://github.com/junegunn/fzf-bin/releases/download/0.17.4/fzf-0.17.4-linux_amd64.tgz
+        dest: /usr/local/bin/
+        remote_src: yes
+      when: not fzf.stat.exists
+  when: is_fzf_exists.rc != 0
+  become: yes
+  become_method: sudo
+
+- name: Check is global installed
+  shell: command -v global >/dev/null 2>&1
+  register: is_global_exists
+  ignore_errors: yes
+
+- name: gnu global
+  block:
+    - apt: name={{ item }} state=present
+      with_items:
+        - exuberant-ctags
+        - ncurses-dev
+    - git:
+        repo: "https://github.com/universal-ctags/ctags.git"
+        dest: /tmp/universal-ctags
+    - shell: cd /tmp/universal-ctags/ && \
+             ./autogen.sh && \
+             ./configure && \
+             make && \ make install && \
+             cd / && \ rm -rf /tmp/universal-ctags
+    - unarchive:
+        src: http://tamacom.com/global/global-6.5.6.tar.gz
+        dest: /tmp/
+        remote_src: yes
+    - shell: cd /tmp/global-6.5.6 && \
+             ./configure && \
+             make && \ make install && \
+             cd / && \ rm -rf /tmp/global-6.5.6
+    - shell: pip install pygments
+    - name: install global tools
+      copy: src="{{ item.src }}" dest="{{ item.dest }}" mode=preserve
+      with_items: "{{ global_files }}"
+  when: is_global_exists.rc != 0
+  become: yes
+  become_method: sudo
 

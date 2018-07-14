@@ -77,3 +77,13 @@ function docker-host-ip () {
 function docker-pretty-stats () {
   docker stats --format "table {{.Name}}\t{{.Container}}\t{{.CPUPerc}}\t{{.MemUsage}}"
 }
+
+function docker-container-fs () {
+    container=$1
+    docker container inspect -f '{{ .GraphDriver.Data.MergedDir }}' $container
+}
+
+function link-docker-container-fs () {
+    fs=$(docker-container-fs $container)
+    ln -sf $fs ./docker-container
+}

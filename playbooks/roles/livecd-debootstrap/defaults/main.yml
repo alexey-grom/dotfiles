@@ -5,3 +5,4 @@ components: main,contrib,non-free
 arch: amd64
 release: stretch
 repo: http://httpredir.debian.org/debian
+cache_proxy: http://localhost:3142/

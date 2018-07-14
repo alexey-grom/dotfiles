@@ -8,11 +8,17 @@
   register: rootpath
 
 - name: Running the debootstrap
-  shell: debootstrap \
-          --variant={{ variant}} \
+  shell: http_proxy={{ cache_proxy }} debootstrap \
+          --variant={{ variant }} \
           --arch={{ arch }} \
           --components={{ components }} \
           {{ release }} \
           {{ inventory_hostname }} \
           {{ repo }}
   when: rootpath.changed == True
+
+- name: Install cache
+  copy:
+    content: Acquire::http::proxy "{{ cache_proxy }}";
+    dest: "{{ inventory_hostname }}/etc/apt/apt.conf.d/30proxy"
+  when: cache_proxy != ''

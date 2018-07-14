@@ -47,8 +47,17 @@ values."
      ;; spell-checking
      syntax-checking
      version-control
+     gtags
      emacs-lisp
      git
+     (ranger :variables
+             ranger-override-dired-mode t
+             ranger-preview-file t
+             ranger-show-preview t
+             ranger-show-hidden t
+             ranger-cleanup-on-disable t
+             ranger-cleanup-eagerly t
+             )
      markdown
      yaml
      lua
@@ -56,7 +65,7 @@ values."
      sql
      go
      erlang
-     python
+     ;; python
      react
      django
      javascript
@@ -72,6 +81,7 @@ values."
    dotspacemacs-additional-packages
    '(
      vue-mode
+     docker-tramp
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -144,17 +154,25 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
-                         gruvbox-dark-hard)
+   dotspacemacs-themes '(lush
+                         gruvbox-dark-hard
+                         sunny-day
+                         monokai
+                         dracula
+                         soft-charcoal
+                         omtose-darker
+                         omtose-softer
+                         spacemacs-dark
+                         )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+                               :size 14
                                :weight normal
                                :width normal
-                               :powerline-scale 1.1)
+                               :powerline-scale 1.0)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -193,7 +211,7 @@ values."
    dotspacemacs-default-layout-name "Default"
    ;; If non nil the default layout name is displayed in the mode-line.
    ;; (default nil)
-   dotspacemacs-display-default-layout nil
+   dotspacemacs-display-default-layout t
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
    dotspacemacs-auto-resume-layouts nil
@@ -259,7 +277,7 @@ values."
    ;; If non nil show the color guide hint for transient state keys. (default t)
    dotspacemacs-show-transient-state-color-guide t
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
-   dotspacemacs-mode-line-unicode-symbols t
+   dotspacemacs-mode-line-unicode-symbols nil
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
@@ -318,6 +336,15 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  )
+
+(defun dotspacemacs/user-config ()
+  "Configuration function for user code.
+This function is called at the very end of Spacemacs initialization after
+layers configuration.
+This is the place where most of your configurations should be done. Unless it is
+explicitly specified that a variable should be set before a package is loaded,
+you should place your code here."
   (progn
     (global-set-key (kbd "C-h") 'delete-backward-char)
     (setq help-char nil))
@@ -353,17 +380,15 @@ before packages are loaded. If you are unsure, you should try in setting them in
         (insert (shell-command-to-string "xsel -o -p"))
         )
       )
+    (evil-leader/set-key "y" 'copy-to-clipboard)
     (evil-leader/set-key "o y" 'copy-to-clipboard)
-    (evil-leader/set-key "o p" 'paste-from-clipboard)))
-
-(defun dotspacemacs/user-config ()
-  "Configuration function for user code.
-This function is called at the very end of Spacemacs initialization after
-layers configuration.
-This is the place where most of your configurations should be done. Unless it is
-explicitly specified that a variable should be set before a package is loaded,
-you should place your code here."
-  )
+    (evil-leader/set-key "o p" 'paste-from-clipboard))
+  (progn
+    (evil-leader/set-key "o t f" 'find-tag)
+    (evil-leader/set-key "o t s" 'helm-etags-select))
+  (progn
+    (evil-define-key 'normal global-map (kbd "C-a") 'evil-numbers/inc-at-pt)
+    (evil-define-key 'normal global-map (kbd "C-x") 'evil-numbers/dec-at-pt)))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
