@@ -9,16 +9,42 @@
   with_items:
   - apt-transport-https
 
-- name: Add key
-  apt_key:
-    url: https://download.docker.com/linux/debian/gpg
-    state: present
+- block:
+  - name: Add key
+    apt_key:
+      url: https://download.docker.com/linux/debian/gpg
+      state: present
 
-- name: Install repository
-  apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/debian/ stretch stable
-    state: present
-    filename: 'docker'
+  - name: Install repository
+    apt_repository:
+      repo: deb [arch=amd64] https://download.docker.com/linux/debian/ stretch stable
+      state: present
+      filename: 'docker'
+
+  when: ansible_distribution == 'Debian'
+
+- block:
+  - name: Add key
+    apt_key:
+      url: https://download.docker.com/linux/debian/gpg
+      state: present
+
+  - name: Install repository
+    apt_repository:
+      repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu/ xenial stable
+      state: present
+      filename: 'docker'
+
+  when: ansible_distribution == 'Ubuntu'
 
 - name: Install docker ce
-  apt: name="docker-ce" state=present update_cache=yes
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+  - docker-ce
+  - python
+  - python-pip
+
+- shell: pip install "{{ item }}"
+  with_items:
+  - 'docker==3.1.1'
+  - 'docker-py>=1.7.0'

@@ -1,3 +1,7 @@
+- apt_repository:
+    repo: deb http://httpredir.debian.org/debian stretch-backports main contrib non-free
+    state: present
+
 - name: Install system-wide packages
   apt: name={{ item }} state=present
   with_items:
@@ -62,6 +66,8 @@
 - name: Enable networkd
   shell: systemctl enable systemd-networkd
 
+- group: name=docker state=present
+
 - name: Create a user
   user:
     name: user
@@ -69,6 +75,7 @@
     shell: /bin/bash
     groups:
       - sudo
+      - docker
 
 - name: Allow 'user' to have passwordless sudo
   lineinfile:

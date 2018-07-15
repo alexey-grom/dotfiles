@@ -22,3 +22,13 @@
     content: Acquire::http::proxy "{{ cache_proxy }}";
     dest: "{{ inventory_hostname }}/etc/apt/apt.conf.d/30proxy"
   when: cache_proxy != ''
+
+- mount:
+    path: "{{ item.path }}"
+    src: "{{ item.src }}"
+    state: mounted
+    fstype: "{{ item.type }}"
+    opts: bind
+  with_items:
+    - {path: "{{ inventory_hostname }}/dev/", src: "/dev/", type: "devtmpfs"}
+    - {path: "{{ inventory_hostname }}/proc/", src: "/proc/", type: "proc"}

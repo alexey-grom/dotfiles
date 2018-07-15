@@ -36,6 +36,8 @@ Plug 'vim-scripts/gtags.vim'
 Plug 'Shougo/deol.nvim'
 
 Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
+Plug 'davidhalter/jedi-vim', { 'do': 'call jedi#configure_call_signatures()' }
 
 Plug 'rstacruz/sparkup'  " ?
 Plug 'scrooloose/nerdcommenter'  " ?

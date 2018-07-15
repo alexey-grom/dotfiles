@@ -67,6 +67,13 @@ nnoremap <Leader>sf :Files<CR>
 nnoremap <Leader>sg :GFiles?<CR>
 nnoremap <Leader>sm :Marks<CR>
 nnoremap <Leader>sc :Commits<CR>
+augroup pyjedi
+  au!
+  autocmd FileType python nnoremap <buffer> <Leader>sd :call jedi#goto()<CR>
+  autocmd FileType python nnoremap <buffer> <Leader>su :call jedi#usages()<CR>
+  autocmd FileType python nnoremap <buffer> <Leader>sr :call jedi#rename()<CR>
+  autocmd FileType python vnoremap <buffer> <Leader>sr :call jedi#rename_visual()<CR>
+augroup END
 
 nnoremap <Leader>ls :mksession! .session.vim<CR>
 nnoremap <Leader>ll :source .session.vim<CR>

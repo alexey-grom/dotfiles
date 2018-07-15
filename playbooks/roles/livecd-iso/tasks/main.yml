@@ -4,6 +4,17 @@
     - squashfs-tools
     - genisoimage
 
+- file:
+    path: "{{ inventory_hostname }}/etc/apt/apt.conf.d/30proxy"
+    state: absent
+
+- mount:
+    path: "{{ item.path }}"
+    state: unmounted
+  with_items:
+    - {path: "{{ inventory_hostname }}/dev/"}
+    - {path: "{{ inventory_hostname }}/proc/"}
+
 - name: Create a live directories
   file:
     path: "{{ inventory_hostname }}/{{ item }}"

@@ -1,3 +1,7 @@
+- apt_repository:
+    repo: deb http://httpredir.debian.org/debian stretch-backports main contrib non-free
+    state: present
+
 - name: Install system-wide packages
   apt: name={{ item }} state=present
   with_items:

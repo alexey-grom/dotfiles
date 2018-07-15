@@ -27,6 +27,17 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:sexp_enable_insert_mode_mappings = 0
 
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#show_docstring = 0
+
+let g:jedi#auto_initialization = 0
+let g:jedi#completions_enabled = 0
+" let g:jedi#goto_command = "<Leader>d"
+" let g:jedi#goto_assignments_command = "<Leader>g"
+" let g:jedi#goto_definitions_command = ""
+" let g:jedi#documentation_command = "K"
+" let g:jedi#usages_command = "<Leader>n"
+" let g:jedi#completions_command = "<C-Space>"
+" let g:jedi#rename_command = "<Leader>r"
 
 " let g:ranger_map_keys = 0
 

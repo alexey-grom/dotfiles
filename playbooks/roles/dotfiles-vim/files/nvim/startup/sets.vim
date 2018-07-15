@@ -15,3 +15,4 @@ set nofoldenable
 " set clipboard+=unnamed
 set clipboard+=unnamedplus
 set nowrap
+set completeopt-=preview

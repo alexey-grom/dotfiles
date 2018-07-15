@@ -13,6 +13,7 @@
   - purge_vundle_git: True
   roles:
     - livecd-setup
+    - debian-docker
     - dotfiles-x11
     - dotfiles-awesome
     - dotfiles-fonts
