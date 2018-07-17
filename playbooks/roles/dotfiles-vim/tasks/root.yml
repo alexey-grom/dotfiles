@@ -19,6 +19,10 @@
         - silversearcher-ag
     - shell: pip install "neovim>=0.2.6" && pip3 install "neovim>=0.2.6"
     - shell: update-alternatives --set vim /usr/bin/nvim
+    - shell: pip install "{{ item }}"
+      with_items:
+          - "flake8"
+          - "pylint"
   when: is_nvim_exists.rc != 0
   become: yes
   become_method: sudo

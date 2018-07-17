@@ -35,16 +35,16 @@ while i <= 9
     let i = i + 1
 endwhile
 
-nnoremap <Leader>ga :Git add %:p<CR><CR>
-nnoremap <Leader>gs :Gstatus<CR><C-w>L
-nnoremap <Leader>gc :Gcommit<CR><C-w>L
-nnoremap <Leader>gbl :Gblame<CR>
-nnoremap <Leader>gf :Git fetch<CR>
-nnoremap <Leader>gi :Git rebase -i<CR>
-nnoremap <Leader>gbr :Git branch<Space>
-nnoremap <Leader>go :Git checkout<Space>
-nnoremap <Leader>grs :Git push<CR>
-nnoremap <Leader>grl :Git pull<CR>
+" nnoremap <Leader>ga :Git add %:p<CR><CR>
+" nnoremap <Leader>gs :Gstatus<CR><C-w>L
+" nnoremap <Leader>gc :Gcommit<CR><C-w>L
+" nnoremap <Leader>gbl :Gblame<CR>
+" nnoremap <Leader>gf :Git fetch<CR>
+" nnoremap <Leader>gi :Git rebase -i<CR>
+" nnoremap <Leader>gbr :Git branch<Space>
+" nnoremap <Leader>go :Git checkout<Space>
+" nnoremap <Leader>grs :Git push<CR>
+" nnoremap <Leader>grl :Git pull<CR>
 
 nnoremap <Leader>fs :w<CR>
 nnoremap <Leader>fm :make<CR>
@@ -64,15 +64,23 @@ nnoremap <Leader>tp :tabprevious<CR>
 nnoremap <Leader>sa :Ag<CR>
 nnoremap <Leader>sw :Ag <C-R>=expand("<cword>")<CR><CR>
 nnoremap <Leader>sf :Files<CR>
-nnoremap <Leader>sg :GFiles?<CR>
+" nnoremap <Leader>sg :GFiles?<CR>
 nnoremap <Leader>sm :Marks<CR>
 nnoremap <Leader>sc :Commits<CR>
-augroup pyjedi
+
+augroup pyadds
   au!
-  autocmd FileType python nnoremap <buffer> <Leader>sd :call jedi#goto()<CR>
+  autocmd FileType python iabbrev <buffer> ppr from pprint import pprint<CR>pprint()<Left>
+  autocmd FileType python iabbrev <buffer> ppdb import pdb; pdb.set_trace()
+  autocmd FileType python nnoremap <buffer> <Leader>sg :call jedi#goto()<CR>
   autocmd FileType python nnoremap <buffer> <Leader>su :call jedi#usages()<CR>
   autocmd FileType python nnoremap <buffer> <Leader>sr :call jedi#rename()<CR>
   autocmd FileType python vnoremap <buffer> <Leader>sr :call jedi#rename_visual()<CR>
+augroup END
+
+augroup jsadds
+  au!
+  autocmd FileType javascript iabbrev <buffer> cl console.log()<Left>
 augroup END
 
 nnoremap <Leader>ls :mksession! .session.vim<CR>
@@ -88,4 +96,5 @@ nnoremap <Leader>tw1 :set wrap<CR>
 
 nnoremap <Leader>ar :RangerEdit<CR>
 nnoremap <Leader>as :Deol<CR>
+nnoremap <Leader>ag :Magit<CR>
 

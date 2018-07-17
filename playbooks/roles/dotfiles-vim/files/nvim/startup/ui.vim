@@ -1,3 +1,6 @@
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+
 if $TERM=~'linux'
     syntax enable
     set t_Co=16

@@ -18,7 +18,8 @@ Plug 'chriskempson/base16-vim'
 Plug 'nanotech/jellybeans.vim'
 " Plug 'mswift42/vim-themes'
 
-Plug 'tpope/vim-fugitive'
+Plug 'jreybert/vimagit'
+" Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'tpope/vim-surround'
@@ -38,6 +39,7 @@ Plug 'Shougo/deol.nvim'
 Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 Plug 'davidhalter/jedi-vim', { 'do': 'call jedi#configure_call_signatures()' }
+Plug 'w0rp/ale'
 
 Plug 'rstacruz/sparkup'  " ?
 Plug 'scrooloose/nerdcommenter'  " ?

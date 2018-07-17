@@ -16,3 +16,6 @@ set nofoldenable
 set clipboard+=unnamedplus
 set nowrap
 set completeopt-=preview
+
+set autoread
+au CursorHold * checktime
