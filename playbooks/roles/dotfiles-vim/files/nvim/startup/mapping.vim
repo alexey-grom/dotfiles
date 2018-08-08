@@ -35,12 +35,12 @@ while i <= 9
     let i = i + 1
 endwhile
 
-" nnoremap <Leader>ga :Git add %:p<CR><CR>
-" nnoremap <Leader>gs :Gstatus<CR><C-w>L
-" nnoremap <Leader>gc :Gcommit<CR><C-w>L
-" nnoremap <Leader>gbl :Gblame<CR>
+nnoremap <Leader>ga :Git add %:p<CR><CR>
+nnoremap <Leader>gs :Gstatus<CR><C-w>L
+nnoremap <Leader>gc :Gcommit<CR><C-w>L
+nnoremap <Leader>gi :Git rebase -i<CR>
+nnoremap <Leader>gbl :Gblame<CR>
 " nnoremap <Leader>gf :Git fetch<CR>
-" nnoremap <Leader>gi :Git rebase -i<CR>
 " nnoremap <Leader>gbr :Git branch<Space>
 " nnoremap <Leader>go :Git checkout<Space>
 " nnoremap <Leader>grs :Git push<CR>

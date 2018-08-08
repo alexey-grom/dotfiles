@@ -87,3 +87,56 @@ function link-docker-container-fs () {
     fs=$(docker-container-fs $container)
     ln -sf $fs ./docker-container
 }
+
+# function docker-nvim () {
+#     image=$1
+#     binary=/usr/bin/nvim
+#     share=/usr/share/nvim
+#
+#     libs_list=(
+#         "/usr/lib/x86_64-linux-gnu/libuv.so.1"
+#         "/usr/lib/x86_64-linux-gnu/libmsgpackc.so.2"
+#         "/usr/lib/x86_64-linux-gnu/libvterm.so.0"
+#         "/usr/lib/x86_64-linux-gnu/libtermkey.so.1"
+#         "/usr/lib/x86_64-linux-gnu/libunibilium.so.0"
+#         "/usr/lib/x86_64-linux-gnu/libluajit-5.1.so.2"
+#         "/usr/lib/x86_64-linux-gnu/libjemalloc.so.1"
+#         # "/lib/x86_64-linux-gnu/librt.so.1"
+#         # "/lib/x86_64-linux-gnu/libpthread.so.0"
+#         # "/lib/x86_64-linux-gnu/libnsl.so.1"
+#         # "/lib/x86_64-linux-gnu/libdl.so.2"
+#         # "/lib/x86_64-linux-gnu/libm.so.6"
+#         # "/lib/x86_64-linux-gnu/libutil.so.1"
+#         # "/lib/x86_64-linux-gnu/libc.so.6"
+#         # "/lib/x86_64-linux-gnu/libgcc_s.so.1"
+#     )
+#
+#     libs=""
+#     for lib in "${libs_list[@]}"; do
+#         libs+=" -v "
+#         libs+="$lib:$lib"
+#     done
+#
+#     # libs=""
+#     # for line in $(ldd $binary | cut -d' ' -f3); do
+#     #     if [[ -z $line ]]; then continue; fi
+#     #     libs+=" -v "
+#     #     libs+="$line:$line"
+#     # done
+#
+#     set -x
+#     docker run \
+#       --rm -it \
+#       -e HOME:/ \
+#       -u $UID:$UID \
+#       -v $binary:$binary \
+#       -v $share:$share \
+#       $libs \
+#       -v $HOME/.config/nvim/:/.config/nvim/ \
+#       -v $HOME/.local/share/nvim/:/.local/share/nvim/ \
+#       -v $PWD:/src/ \
+#       -w /src/ \
+#       $image \
+#       nvim ${@:2}
+#     set +x
+# }

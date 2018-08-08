@@ -19,7 +19,7 @@ Plug 'nanotech/jellybeans.vim'
 " Plug 'mswift42/vim-themes'
 
 Plug 'jreybert/vimagit'
-" Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'tpope/vim-surround'
@@ -27,13 +27,13 @@ Plug 'guns/vim-sexp'
 Plug 'tpope/vim-fireplace'
 Plug 'guns/vim-clojure-static'
 
-" Plug 'francoiscabrol/ranger.vim'
-Plug 'rafaqz/ranger.vim'
 Plug 'junegunn/fzf'
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf.vim'
-Plug 'vim-scripts/gtags.vim'
+" Plug 'vim-scripts/gtags.vim'
 
+" Plug 'francoiscabrol/ranger.vim'
+Plug 'rafaqz/ranger.vim'
 Plug 'Shougo/deol.nvim'
 
 Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
