@@ -84,13 +84,21 @@ function cleanup-chroot-mounts () {
     echo "Usage: cleanup-chroot-mounts <path>"
     return
   fi
-  path=$1
+  path=$(realpath $1)
   points=(proc sys dev run)
   for point in "${points[@]}"; do
     mount --make-rprivate "$path/$point" 2>/dev/null || true
   done
-  grep $(realpath $path) /proc/mounts | \
+  echo "before:"
+  grep $path /proc/mounts | \
+    cut -d' ' -f2 | \
+    sort -r 
+  grep $path /proc/mounts | \
     cut -d' ' -f2 | \
     sort -r | \
     xargs -I{} /bin/sh -c "umount -R {} 2>/dev/null || true"
+  echo "after:"
+  grep $path /proc/mounts | \
+    cut -d' ' -f2 | \
+    sort -r 
 }

@@ -83,60 +83,50 @@ function docker-container-fs () {
     docker container inspect -f '{{ .GraphDriver.Data.MergedDir }}' $container
 }
 
-function link-docker-container-fs () {
-    fs=$(docker-container-fs $container)
-    ln -sf $fs ./docker-container
+rslave-bind () {
+    src=$1
+    dest=$2
+    mkdir -p "$dest"
+    sudo mount --bind "$src" "$dest"
+    sudo mount --make-rslave "$dest" 
 }
 
-# function docker-nvim () {
-#     image=$1
-#     binary=/usr/bin/nvim
-#     share=/usr/share/nvim
-#
-#     libs_list=(
-#         "/usr/lib/x86_64-linux-gnu/libuv.so.1"
-#         "/usr/lib/x86_64-linux-gnu/libmsgpackc.so.2"
-#         "/usr/lib/x86_64-linux-gnu/libvterm.so.0"
-#         "/usr/lib/x86_64-linux-gnu/libtermkey.so.1"
-#         "/usr/lib/x86_64-linux-gnu/libunibilium.so.0"
-#         "/usr/lib/x86_64-linux-gnu/libluajit-5.1.so.2"
-#         "/usr/lib/x86_64-linux-gnu/libjemalloc.so.1"
-#         # "/lib/x86_64-linux-gnu/librt.so.1"
-#         # "/lib/x86_64-linux-gnu/libpthread.so.0"
-#         # "/lib/x86_64-linux-gnu/libnsl.so.1"
-#         # "/lib/x86_64-linux-gnu/libdl.so.2"
-#         # "/lib/x86_64-linux-gnu/libm.so.6"
-#         # "/lib/x86_64-linux-gnu/libutil.so.1"
-#         # "/lib/x86_64-linux-gnu/libc.so.6"
-#         # "/lib/x86_64-linux-gnu/libgcc_s.so.1"
-#     )
-#
-#     libs=""
-#     for lib in "${libs_list[@]}"; do
-#         libs+=" -v "
-#         libs+="$lib:$lib"
-#     done
-#
-#     # libs=""
-#     # for line in $(ldd $binary | cut -d' ' -f3); do
-#     #     if [[ -z $line ]]; then continue; fi
-#     #     libs+=" -v "
-#     #     libs+="$line:$line"
-#     # done
-#
-#     set -x
-#     docker run \
-#       --rm -it \
-#       -e HOME:/ \
-#       -u $UID:$UID \
-#       -v $binary:$binary \
-#       -v $share:$share \
-#       $libs \
-#       -v $HOME/.config/nvim/:/.config/nvim/ \
-#       -v $HOME/.local/share/nvim/:/.local/share/nvim/ \
-#       -v $PWD:/src/ \
-#       -w /src/ \
-#       $image \
-#       nvim ${@:2}
-#     set +x
-# }
+get-docker-python-imports () {
+    container=$1
+    # if [[ -z "$container" ]]; then
+    #     echo "Usage: get-python-imports <container>"
+    #     return
+    # fi
+    docker exec $container python -c "import sys; print('\n'.join([_ for _ in sys.path if 'packages' in _]))"
+}
+
+function bind-docker-fs () {
+    container=$1
+    if [[ -z "$container" ]]; then
+        echo "Usage: bind-docker-fs <container>"
+        return
+    fi
+    fs=$(docker-container-fs $container)
+    if [[ -z "$fs" ]]; then
+        return
+    fi
+    dest=./.docker-image-fs/
+    rslave-bind "$fs" "$dest"
+}
+
+function bind-docker-python-libs () {
+    container=$1
+    if [[ -z "$container" ]]; then
+        echo "Usage: bind-docker-python-libs <container>"
+        return
+    fi
+    fs=$(docker-container-fs $container)
+    if [[ -z "$fs" ]]; then
+        return
+    fi
+    dest=./.docker-image-fs/
+    for path in $(get-docker-python-imports $container); do 
+        rslave-bind "$fs$path" "$dest$(basename $path)"
+        echo $path
+    done
+}
