@@ -1,13 +1,13 @@
 - hosts: all
   roles:
-    - role: google-chrome
-      tags: [env, chrome]
-
     - role: home-preset
       tags: [env, preset]
 
     - role: dotfiles-x11
       tags: [x, x11]
+
+    - role: debian-docker
+      tags: [docker] 
 
     - role: dotfiles-awesome
       tags: [x, awesome]
@@ -35,6 +35,9 @@
 
     - role: dotfiles-vim
       tags: [console, vim]
+
+    - role: google-chrome
+      tags: [env, chrome]
 
 #    - role: dotfiles-emacs
 #      tags: [console, emacs]
