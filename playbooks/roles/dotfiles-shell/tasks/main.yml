@@ -1,12 +1,12 @@
-- include_tasks: root.yml
+- import_tasks: root.yml
   become: yes
   become_method: sudo
 
-- include_tasks: user.yml
+- import_tasks: user.yml
 
-- shell: "whoami | grep alex"
+- shell: "whoami"
   ignore_errors: True
-  register: isalex
+  register: whoami
 
-- include_tasks: user-alex.yml
-  when: isalex.rc == 0
+- import_tasks: user-alex.yml
+  when: "whoami.stdout == 'alex' or whoami.stdout == 'user'"

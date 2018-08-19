@@ -4,7 +4,7 @@
     url: https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.zip
     dest: /var/tmp/font.zip
 
-- file: path={{ item }} state=directory recurse=True
+- file: path="{{ item }}" state=directory recurse=True
   with_items:
   - /var/tmp/font/
   - /usr/local/share/fonts/OTF/
@@ -29,10 +29,7 @@
   - fc-list | grep "Source Code Pro"
   register: result
 
-- assert:
-    that: result
-
-- file: name={{ item }} state=absent
+- file: name="{{ item }}" state=absent
   with_items:
   - /var/tmp/font.zip
   - /var/tmp/font/

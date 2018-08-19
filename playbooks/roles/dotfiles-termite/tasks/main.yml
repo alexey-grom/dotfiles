@@ -6,7 +6,7 @@
 - name: Install termite
   become: yes
   become_method: sudo
-  include_tasks: root.yml
+  import_tasks: root.yml
   when: is_termite_exist.rc != 0
 
 - shell: "whoami | grep root"
@@ -14,5 +14,5 @@
   register: isroot
 
 - name: Dotfiles
-  include_tasks: user.yml
+  import_tasks: user.yml
   when: isroot.rc != 0

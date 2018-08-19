@@ -3,7 +3,7 @@
   register: is_chrome_exists
   ignore_errors: yes
 
-- include_tasks: root.yml
+- import_tasks: root.yml
   become: yes
   become_method: sudo
   when: is_chrome_exists.rc != 0

@@ -3,9 +3,9 @@
   register: is_mosh_exist
   ignore_errors: yes
 
-- include_tasks: root.yml
+- import_tasks: root.yml
   become: yes
   become_method: sudo
   when: is_mosh_exist.rc != 0
 
-- include_tasks: user.yml
+- import_tasks: user.yml

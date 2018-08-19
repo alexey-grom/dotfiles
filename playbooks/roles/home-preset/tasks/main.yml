@@ -1,4 +1,4 @@
-- include_tasks: root.yml
+- import_tasks: root.yml
   become: yes
   become_method: sudo
 

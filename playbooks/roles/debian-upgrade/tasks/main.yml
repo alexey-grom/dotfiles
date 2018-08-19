@@ -7,12 +7,12 @@
   register: replace
 
 - name: Upgrade distr
-  include_tasks: reboot.yml
+  import_tasks: reboot.yml
   when: replace.changed
 
 - name: Check if a reboot is required
   register: file
   stat: path=/var/run/reboot-required get_md5=no
 
-- include_tasks: reboot.yml
+- import_tasks: reboot.yml
   when: file.stat.exists == true

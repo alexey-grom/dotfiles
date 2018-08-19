@@ -1,9 +1,9 @@
-- include_tasks: root.yml
+- import_tasks: root.yml
 
 - shell: "whoami | grep root"
   ignore_errors: True
   register: isroot
 
 - name: Dotfiles
-  include_tasks: user.yml
-  when: root_install_nvim || isroot.rc != 0
+  import_tasks: user.yml
+  # when: "root_install_nvim or isroot.rc != 0"
