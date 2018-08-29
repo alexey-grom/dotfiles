@@ -33,7 +33,7 @@ function mount-with-ssh () {
   local server=$1
   local path=$2
   local mountpoint=$3
-  [ ! -d "$mountpoint" ] && mkdir "$mountpoint"
+  [ ! -d "$mountpoint" ] && mkdir -p "$mountpoint"
   sshfs -o follow_symlinks ${server}:${path} $mountpoint
 }
 

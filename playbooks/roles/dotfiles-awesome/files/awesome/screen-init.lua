@@ -7,6 +7,7 @@ local lain = require("lain")
 --local json = require("json")
 local tags = require("tags")
 local bindings = require("bindings")
+local battery = require("widgets/battery-widget")
 --local hostname = require("hostname")
 
 --lain.widget.calendar()
@@ -77,6 +78,10 @@ local function create_top_bar(screen)
         right = {
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
+            battery{
+                battery_prefix = ' ',
+                limits = {}
+            },
             awful.widget.keyboardlayout(),
             clock,
             layoutbox
