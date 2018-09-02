@@ -44,39 +44,3 @@
   when: is_fzf_exists.rc != 0
   become: yes
   become_method: sudo
-
-- name: Check is global installed
-  shell: command -v global >/dev/null 2>&1
-  register: is_global_exists
-  ignore_errors: yes
-
-- name: gnu global
-  block:
-    - apt: name={{ item }} state=present
-      with_items:
-        - exuberant-ctags
-        - ncurses-dev
-    - git:
-        repo: "https://github.com/universal-ctags/ctags.git"
-        dest: /tmp/universal-ctags
-    - shell: cd /tmp/universal-ctags/ && \
-             ./autogen.sh && \
-             ./configure && \
-             make && \ make install && \
-             cd / && \ rm -rf /tmp/universal-ctags
-    - unarchive:
-        src: http://tamacom.com/global/global-6.5.6.tar.gz
-        dest: /tmp/
-        remote_src: yes
-    - shell: cd /tmp/global-6.5.6 && \
-             ./configure && \
-             make && \ make install && \
-             cd / && \ rm -rf /tmp/global-6.5.6
-    - shell: pip install pygments
-    - name: install global tools
-      copy: src="{{ item.src }}" dest="{{ item.dest }}" mode=preserve
-      with_items: "{{ global_files }}"
-  when: is_global_exists.rc != 0
-  become: yes
-  become_method: sudo
-

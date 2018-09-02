@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-find . -type f -readable ! -path 'phonenumbers/data/*' ! -name '*.mo' >gtags.files

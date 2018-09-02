@@ -14,7 +14,6 @@ shopt -s checkwinsize
 
 export VAGRANT_DEFAULT_PROVIDER=libvirt
 export EDITOR=vim
-export GTAGSGLOBAL=lglobal
 
 source ~/.config/bash/history
 source ~/.config/bash/completion

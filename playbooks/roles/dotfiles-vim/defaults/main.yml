@@ -3,6 +3,3 @@ root_install_nvim: False
 vim_files:
   - {src: "ideavimrc", dest: "~/.ideavimrc"}
   - {src: "nvim/", dest: "~/.config/nvim/"}
-global_files:
-  - {src: "bin/lglobal", dest: "/usr/local/bin/"}
-  - {src: "bin/lglobal_hook", dest: "/usr/local/bin/"}

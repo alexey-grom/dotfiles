@@ -23,6 +23,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'tpope/vim-surround'
+
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-fireplace'
 Plug 'guns/vim-clojure-static'
@@ -30,7 +31,6 @@ Plug 'guns/vim-clojure-static'
 Plug 'junegunn/fzf'
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf.vim'
-" Plug 'vim-scripts/gtags.vim'
 
 " Plug 'francoiscabrol/ranger.vim'
 Plug 'rafaqz/ranger.vim'
@@ -39,7 +39,8 @@ Plug 'Shougo/deol.nvim'
 Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 Plug 'davidhalter/jedi-vim', { 'do': 'call jedi#configure_call_signatures()' }
-Plug 'w0rp/ale'
+Plug 'w0rp/ale'  " linting
+Plug 'posva/vim-vue'
 
 Plug 'rstacruz/sparkup'  " ?
 Plug 'scrooloose/nerdcommenter'  " ?
