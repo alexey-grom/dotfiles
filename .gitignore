@@ -4,3 +4,4 @@
 tmp/
 update-home.inventory.ini
 ssh-invasion.inventory.ini
+.session.vim
