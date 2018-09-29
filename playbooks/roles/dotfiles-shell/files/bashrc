@@ -30,13 +30,5 @@ PATH=$PATH:$(realpath ~)/.bin
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-
-# function _pyenv() {
-#     PYENV_PATH="$HOME/.pyenv/bin/"
-#     if [[ -d "$PYENV_PATH" ]]; then
-#       export PATH="${PYENV_PATH}:$PATH"
-#       eval "$(pyenv init -)"
-#       eval "$(pyenv virtualenv-init -)"
-#     fi
-# }
-# _pyenv
+dscomplete=/usr/local/lib/python2.7/dist-packages/dsjk-0.0.1-py2.7.egg/ds/autocomplete/bash
+[ -f $dscomplete ] && source $dscomplete
