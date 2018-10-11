@@ -96,6 +96,18 @@ case "$extension" in
         try lynx   -dump "$path" && { dump | trim | fmt -s -w $width; exit 4; }
         try elinks -dump "$path" && { dump | trim | fmt -s -w $width; exit 4; }
         ;; # fall back to highlight/cat if the text browsers fail
+    gpg)
+        {
+            store=$(realpath ~/.password-store/)/
+            beginswith $store $path && {
+                name="$path"
+                name="${name#$store}"
+                name="${name%.gpg}"
+                pass show $name
+                exit 0;
+            }
+        }
+        ;;
 esac
 
 case "$mimetype" in

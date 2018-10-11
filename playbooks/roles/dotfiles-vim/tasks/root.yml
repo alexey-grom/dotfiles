@@ -23,6 +23,8 @@
       with_items:
           - "flake8"
           - "pylint"
+          - "jedi"
+          - "nrepl-python-client"
   when: is_nvim_exists.rc != 0
   become: yes
   become_method: sudo

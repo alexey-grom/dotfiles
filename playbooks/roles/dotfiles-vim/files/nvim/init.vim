@@ -39,6 +39,9 @@ let g:jedi#completions_enabled = 0
 let g:magit_default_show_all_files = 0
 let g:magit_default_fold_level = 0
 
+let g:deoplete#keyword_patterns = {}
+let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.#]*'
+
 function! s:build_quickfix_list(lines)
   call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
   copen

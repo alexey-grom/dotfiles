@@ -3,5 +3,5 @@ function remove-pyc () {
 }
 
 function count-loc () {
-  find -type f -name "*.py" -print0 | wc --files0-from=- -l
+  find -type f -name "*.${1:-py}" -print0 | wc --files0-from=- -l
 }
