@@ -21,7 +21,7 @@ source ~/.config/bash/aliases
 source ~/.config/bash/functions
 source ~/.config/bash/liquidprompt/liquidprompt
 
-PATH=$PATH:$(realpath ~)/.bin
+PATH=$PATH:$(realpath ~)/.bin:$(realpath ~)/.local/bin
 
 #
 # custom
@@ -32,3 +32,5 @@ export NVM_DIR="$HOME/.nvm"
 
 dscomplete=/usr/local/lib/python2.7/dist-packages/dsjk-0.0.1-py2.7.egg/ds/autocomplete/bash
 [ -f $dscomplete ] && source $dscomplete
+
+export CARP_DIR=~/projects/Carp/

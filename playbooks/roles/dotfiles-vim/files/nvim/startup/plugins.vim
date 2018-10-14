@@ -42,6 +42,7 @@ Plug 'davidhalter/jedi-vim', { 'do': 'call jedi#configure_call_signatures()' }
 Plug 'clojure-vim/async-clj-omni'
 Plug 'w0rp/ale'  " linting
 Plug 'posva/vim-vue'
+Plug 'hellerve/carp-vim'
 
 Plug 'rstacruz/sparkup'  " ?
 Plug 'scrooloose/nerdcommenter'  " ?
